@@ -185,9 +185,12 @@ read. Close the session and the name catches up.
 **Choosing what syncs:** each project lists its sessions, labelled by
 conversation rather than by UUID. Untick one to stop it moving in either
 direction — useful for a 70 MB transcript you do not want on a laptop. The
-trash icon deletes a session here, or here and on Drive; the arrow next to it
-moves one to another project, rewriting every path inside the transcript so it
-belongs there. Neither is offered while a session is running.
+trash icon deletes a session here, or here and on Drive; the one beside it
+copies a session into another project, rewriting every path inside the
+transcript so it belongs there. That one copies rather than moves on purpose —
+the rewrite touches every line of the only record of a conversation, so the
+result is checked and the original is left alone for you to delete afterwards.
+Neither is offered while a session is running.
 
 **Conflicts:** files that changed on both sides are merged with `git merge-file`.
 Overlapping edits leave your local file untouched and raise a conflict in the
