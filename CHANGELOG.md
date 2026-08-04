@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.9.8
+
+- **The screen you actually land on now shows your projects and sessions too.**
+  0.9.7 put them on the first-run and sign-in screens but not on the one for a
+  sign-in whose OAuth client has gone — which is the screen an existing install
+  lands on after an update, so in practice nobody saw them.
+- The build now pins what each screen must say, not only that it draws without
+  throwing. A setup screen missing the list looks perfectly healthy to a
+  renderer; it is a regression to a reader.
+
 ## 0.9.7
 
 - **A first run now opens on what the extension does**, not on four errands in
