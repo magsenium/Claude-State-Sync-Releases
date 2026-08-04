@@ -1,5 +1,25 @@
 # Changelog
 
+## 0.9.5
+
+**Fixes a panel that looks signed in while every sync fails. Upgrade.**
+
+- **"Not signed in to Google Drive." while plainly signed in.** Reaching Drive
+  needs two things kept in different places: the refresh token, which lives in
+  secret storage and outlives any build, and the OAuth client, which is either
+  pasted in or baked into the build. Replace a build that carried a client with
+  one that does not and the token survives with nothing to redeem it against.
+  The panel asked only about the token, so it drew the full signed-in view and
+  Sync now failed on every press.
+- The panel now says what actually happened, and offers the one thing that
+  fixes it: paste the same client back in. **No new sign-in is needed** — a
+  refresh token belongs to the client that issued it, so the same client picks
+  the session up where it left off. The sign-in button, which is what the old
+  message sent you to, could never have fixed this.
+- The two failures are told apart everywhere — panel, Sync now and the error
+  itself. `authReadiness()` decides it in one place, and a test pins all four
+  combinations.
+
 ## 0.9.4
 
 - **A sync now says how far along it is** — the percentage and the file count
