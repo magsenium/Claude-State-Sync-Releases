@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.9.6
+
+- **The client is entered in the panel now**, in two boxes with a Save button,
+  instead of two prompts that appear one after the other at the top of the
+  window. Enter saves from either box — in the prompts it silently did nothing
+  when the ID had not been recognised, which reads exactly like a key that does
+  not work.
+- **Paste the whole `client_secret….json`** Google gives you into either box and
+  both fill in. It is the file you downloaded; picking two fields out of it by
+  eye was work with no purpose. The command in the palette takes it too, and
+  stops asking for the secret when the JSON already carried one.
+- Why the prompts were the wrong shape: the second one asked for the secret only
+  after the first was accepted, so anyone who did not have it to hand pressed
+  Escape and nothing was saved — with no sign that nothing had been. Both boxes
+  are visible at once and say what is wrong, next to the box that is wrong.
+- **Typing into the panel is no longer interrupted by the panel.** It repaints on
+  its own — a session opening is enough — and that used to wipe a half-typed
+  value and take the caret with it.
+
 ## 0.9.5
 
 **Fixes a panel that looks signed in while every sync fails. Upgrade.**

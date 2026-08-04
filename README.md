@@ -1,7 +1,7 @@
 # Claude State Sync — releases
 
 [![Marketplace](https://img.shields.io/badge/Marketplace-install-0098FF)](https://marketplace.visualstudio.com/items?itemName=triplepai14.claude-state-sync)
-![Version](https://img.shields.io/badge/version-0.9.5-blue)
+![Version](https://img.shields.io/badge/version-0.9.6-blue)
 ![VS Code](https://img.shields.io/badge/VS%20Code-1.85+-007ACC)
 ![Storage](https://img.shields.io/badge/storage-your%20own%20Google%20Drive-4285F4?logo=googledrive&logoColor=white)
 ![Scope](https://img.shields.io/badge/OAuth%20scope-drive.file-34A853)
@@ -117,9 +117,11 @@ as a secret". The sign-in is protected by PKCE and a loopback redirect instead.
 Open the **Claude State Sync** panel (the cloud icon in the activity bar). It
 lists the same four steps with buttons that open each page, then:
 
-1. Press **Paste client ID and secret** and enter both. They are stored in VS
-   Code's secret storage — Credential Manager on Windows, Keychain on macOS,
-   libsecret on Linux — never in `settings.json`.
+1. Fill in the **Client ID** and **Client secret** boxes and press **Save** —
+   or paste the whole `client_secret….json` Google gave you into either box and
+   both fill themselves in. They are stored in VS Code's secret storage —
+   Credential Manager on Windows, Keychain on macOS, libsecret on Linux — never
+   in `settings.json`.
 2. Press **Sign in to Google Drive**. Your browser opens Google's consent
    screen.
 3. If you see **"Google hasn't verified this app"**, choose **Advanced** → **Go
