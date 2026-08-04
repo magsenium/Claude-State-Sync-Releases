@@ -1,32 +1,56 @@
 # Changelog
 
+## 0.9.15
+
+**Fixes a second machine that can never push, and never stops saying "not
+synced". Upgrade every machine.**
+
+- **A machine could be left unable to push at all.** A pull rewrites every path
+  inside a transcript to the local checkout, so two machines holding the same
+  conversation legitimately hold different numbers of bytes. Both the panel tag
+  and the push guard compared our byte count against the *pushing* machine's,
+  recorded on Drive. On a machine whose paths are shorter, every session read
+  as smaller forever: the tag said "not synced" however often sync was pressed,
+  and the guard read the same difference as "Drive is longer, do not truncate
+  it" and deferred the upload. Every session, every cycle.
+- Both now compare against a **local watermark** — what this machine's own file
+  looked like when it last pushed or pulled — and the push guard asks the only
+  question that means anything across machines: *has the Drive copy moved since
+  we last agreed?*
+- **A 70 MB transcript is no longer re-downloaded and re-rewritten every
+  cycle.** The pull skipped only when the byte counts matched, which on a
+  second machine they never did.
+- **Forked sessions are tagged `forked`, in red, instead of `not synced`.**
+  Sync cannot resolve a fork, so telling you to press sync was an instruction
+  that could never work. The tooltip says what actually resolves it.
+
 ## 0.9.14
 
 **The not-synced tag no longer cries wolf. Reported within the hour by its
-first user — twice, correctly.**
+first user â€” twice, correctly.**
 
 - **Opening a session just to read it flipped the tag.** Claude Code touches
   the transcript when a session is opened: the mtime moves, the size does not.
-  Verified against a real file — modified time newer, grown by exactly zero
+  Verified against a real file â€” modified time newer, grown by exactly zero
   bytes. A touch is not a change; same size now reads as in sync.
 - **Closing a session after syncing flipped it too**, which read as "you must
-  close before you sync". Closing writes derived records — the summary, the
+  close before you sync". Closing writes derived records â€” the summary, the
   title. The tag now reads only the bytes appended since the last push and asks
   whether any of them is a conversation turn (a record with a `uuid`; summaries
   carry `leafUuid`, which deliberately does not match). Titles and summaries
-  travel on the next sync as they always did — quietly.
+  travel on the next sync as they always did â€” quietly.
 - Reading the appended bytes costs almost nothing: on a 70 MB transcript whose
   owner pressed close, the tail is a few hundred bytes, and the answer is
   cached until the file changes again.
 - A transcript that *shrank* against Drive's copy is tagged rather than
-  explained away — that is not what an append looks like.
+  explained away â€” that is not what an append looks like.
 
 ## 0.9.13
 
 - **The `not synced` tag now works from the moment 0.9.12 is installed**, not
   from its second sync. The exact comparison needs the per-session metadata
   that only a 0.9.12+ sync stores, and state written by older builds has none
-  of it — so the one session the tag was built for kept reading `synced` until
+  of it â€” so the one session the tag was built for kept reading `synced` until
   a sync happened to run. Until the metadata exists, the time of the last
   completed sync stands in: a transcript modified after it is not on Drive
   yet. With nothing known at all the panel says nothing rather than guesses.
@@ -37,12 +61,12 @@ first user — twice, correctly.**
 
 - **A session typed in after its last sync is tagged `not synced`**, in amber,
   where `synced` used to keep saying otherwise. That tag is the answer to "did
-  I remember to press ⟳ before leaving?" — the one question the panel could
+  I remember to press âŸ³ before leaving?" â€” the one question the panel could
   not answer, since `synced` only ever meant "a copy exists on Drive", not
   "the copy is current".
 - The comparison costs nothing at sync time and nothing at panel time: every
   upload already records the transcript's size and mtime on the Drive file,
-  and every pull stamps the local file with the same mtime — so on a synced
+  and every pull stamps the local file with the same mtime â€” so on a synced
   session the two clocks are equal, and a local file strictly past Drive's
   has turns Drive lacks. The panel just compares the two numbers it already
   had.
@@ -53,17 +77,17 @@ first user — twice, correctly.**
 ## 0.9.11
 
 - **The panel now tells you when another machine has pushed something you have
-  not pulled**: a banner — *2 sessions from laptop waiting on Drive — pull
-  now* — and a ⬇ count in the status bar. Until now the only way to know
+  not pulled**: a banner â€” *2 sessions from laptop waiting on Drive â€” pull
+  now* â€” and a â¬‡ count in the status bar. Until now the only way to know
   whether machine A's sync had arrived was to pull and see.
 - Noticing costs one small request: Drive is asked what changed since this
   machine last looked. The decision uses Drive's own modified times as the
-  watermark and the pushing machine's name recorded on every upload — so your
+  watermark and the pushing machine's name recorded on every upload â€” so your
   own pushes are never echoed back, a skewed local clock cannot hide anything,
   and no hashes or downloads are involved in noticing. Whether a pull actually
   replaces a file is still decided the usual way: size and mtime for
   transcripts, md5 for the small files, record uuids on any dispute.
-- Checked when the panel opens and every few minutes while it stays open —
+- Checked when the panel opens and every few minutes while it stays open â€”
   never in the background with the panel closed, never twice within a minute.
   `claudeStateSync.remoteCheck.minutes` sets the pace; 0 turns it off.
 - The news persists until a sync pulls it, so noticing is not forgetting:
@@ -76,29 +100,29 @@ Upgrade both machines.**
 
 - **A stale path rewrite could freeze a session on one machine, permanently.**
   A pulled transcript is rewritten to the local checkout by whichever build
-  pulled it. If the rewrite rules have changed since — the drive-letter case
-  fix, a moved project — the next pull differs from the local copy in bytes
+  pulled it. If the rewrite rules have changed since â€” the drive-letter case
+  fix, a moved project â€” the next pull differs from the local copy in bytes
   while being the same conversation, and the byte comparison called that a
   fork: the download was parked aside, the visible file left old. Every later
-  sync repeated it. Forks are now confirmed at the record level — line count
-  and the per-record uuids, which no rewrite touches — and only a fork the
+  sync repeated it. Forks are now confirmed at the record level â€” line count
+  and the per-record uuids, which no rewrite touches â€” and only a fork the
   records also show is treated as one.
 - **A session open on the receiving machine is no longer replaced underneath
   the window.** The running conversation keeps its state in that process, so
   the file swap changed nothing on screen while the process kept appending to
-  the swapped file — "sync did nothing", with two histories interleaving on
+  the swapped file â€” "sync did nothing", with two histories interleaving on
   disk underneath. The pull now leaves a live session alone and says so in the
   log; close it, sync, resume.
 - If machine B pressed sync while machine A was still uploading, B pulled
   whatever had reached Drive at that moment. The README now says to let A
-  finish — the progress numbers from 0.9.4 show when that is.
+  finish â€” the progress numbers from 0.9.4 show when that is.
 
 ## 0.9.9
 
 - **The setup screens now carry the whole panel underneath them**, not a summary
   of it: your projects, every session by name and size, the shared scopes, the
   activity list. All of it is read from disk, so it is real and populated before
-  Google is involved at all — and it answers "what am I setting this up for"
+  Google is involved at all â€” and it answers "what am I setting this up for"
   better than any description above it does.
 - Sync appears on those screens too, disabled and saying why. A button that
   materialises only once everything works gives no hint that it is the point of
@@ -106,7 +130,7 @@ Upgrade both machines.**
 - Sign out and switch account stay hidden until there is an account to act on,
   and the Drive row says *not connected yet* rather than *signed in*.
 - **Fixed: a project card said "sessions none yet" directly above its sessions.**
-  The count came from the sync stats, which a sync writes — so before the first
+  The count came from the sync stats, which a sync writes â€” so before the first
   one it was 0 while the transcripts sat on disk in plain sight. It counts the
   rows now.
 - The build pins what each screen must and must not contain, and the panel
@@ -117,7 +141,7 @@ Upgrade both machines.**
 
 - **The screen you actually land on now shows your projects and sessions too.**
   0.9.7 put them on the first-run and sign-in screens but not on the one for a
-  sign-in whose OAuth client has gone — which is the screen an existing install
+  sign-in whose OAuth client has gone â€” which is the screen an existing install
   lands on after an update, so in practice nobody saw them.
 - The build now pins what each screen must say, not only that it draws without
   throwing. A setup screen missing the list looks perfectly healthy to a
@@ -126,8 +150,8 @@ Upgrade both machines.**
 ## 0.9.7
 
 - **A first run now opens on what the extension does**, not on four errands in
-  Google Cloud Console. Four lines — state on every machine, carrying a
-  conversation across, your own Drive, nothing without asking — then the setup.
+  Google Cloud Console. Four lines â€” state on every machine, carrying a
+  conversation across, your own Drive, nothing without asking â€” then the setup.
 - **And on your own projects and sessions, by name.** All of that is read from
   disk and needs no Google account, so the panel can show what would be carried
   across before you have connected anything: the projects it found, the
@@ -136,7 +160,7 @@ Upgrade both machines.**
   what connecting is for.
 - **The build now draws the panel rather than only parsing it.** A missing
   function or a property read off nothing throws when the panel renders, which
-  ships as a blank sidebar with a clean build — that has happened here once
+  ships as a blank sidebar with a clean build â€” that has happened here once
   already. `check-webview.mjs` runs the panel in every state it has, including a
   machine with no projects, and fails on a throw, on nothing drawn, and on
   `undefined` or `NaN` reaching the markup.
@@ -145,19 +169,19 @@ Upgrade both machines.**
 
 - **The client is entered in the panel now**, in two boxes with a Save button,
   instead of two prompts that appear one after the other at the top of the
-  window. Enter saves from either box — in the prompts it silently did nothing
+  window. Enter saves from either box â€” in the prompts it silently did nothing
   when the ID had not been recognised, which reads exactly like a key that does
   not work.
-- **Paste the whole `client_secret….json`** Google gives you into either box and
+- **Paste the whole `client_secretâ€¦.json`** Google gives you into either box and
   both fill in. It is the file you downloaded; picking two fields out of it by
   eye was work with no purpose. The command in the palette takes it too, and
   stops asking for the secret when the JSON already carried one.
 - Why the prompts were the wrong shape: the second one asked for the secret only
   after the first was accepted, so anyone who did not have it to hand pressed
-  Escape and nothing was saved — with no sign that nothing had been. Both boxes
+  Escape and nothing was saved â€” with no sign that nothing had been. Both boxes
   are visible at once and say what is wrong, next to the box that is wrong.
 - **Typing into the panel is no longer interrupted by the panel.** It repaints on
-  its own — a session opening is enough — and that used to wipe a half-typed
+  its own â€” a session opening is enough â€” and that used to wipe a half-typed
   value and take the caret with it.
 
 ## 0.9.5
@@ -172,22 +196,22 @@ Upgrade both machines.**
   The panel asked only about the token, so it drew the full signed-in view and
   Sync now failed on every press.
 - The panel now says what actually happened, and offers the one thing that
-  fixes it: paste the same client back in. **No new sign-in is needed** — a
+  fixes it: paste the same client back in. **No new sign-in is needed** â€” a
   refresh token belongs to the client that issued it, so the same client picks
   the session up where it left off. The sign-in button, which is what the old
   message sent you to, could never have fixed this.
-- The two failures are told apart everywhere — panel, Sync now and the error
+- The two failures are told apart everywhere â€” panel, Sync now and the error
   itself. `authReadiness()` decides it in one place, and a test pins all four
   combinations.
 
 ## 0.9.4
 
-- **A sync now says how far along it is** — the percentage and the file count
+- **A sync now says how far along it is** â€” the percentage and the file count
   beside the name of the file being worked on. The fraction was already being
   computed; it only ever set the width of a 2px bar, which on a long sync is
   indistinguishable from a spinner.
 - **Fixed: the bar never showed the indeterminate phase.** It is drawn that way
-  while Drive is being listed, because the total cannot be counted before then —
+  while Drive is being listed, because the total cannot be counted before then â€”
   but the moving segment was also given an inline `width:0%`, and an inline
   style outranks the stylesheet, so what should have been a sliding bar was an
   empty track.
@@ -215,7 +239,7 @@ Upgrade both machines.**
   wrong on Linux, where `/home/me/App` and `/home/me/app` are different
   projects: a session could have bound to the wrong folder, or a rewrite could
   have altered a path it should not have touched. Both branches are tested.
-- Cross-platform audit otherwise clean — `os.homedir()` and `os.tmpdir()` for
+- Cross-platform audit otherwise clean â€” `os.homedir()` and `os.tmpdir()` for
   locations, `path.join` throughout, the only external program is `git`, and the
   session watcher is non-recursive, which Linux requires.
 
@@ -246,7 +270,7 @@ Upgrade both machines.**
   session registry is now watched, so a session appearing or ending updates the
   list within a moment. A slow tick while the panel is on screen catches what no
   event announces, such as a registry file orphaned by a crash.
-- This reads local files only. Nothing here syncs — that is still yours to ask
+- This reads local files only. Nothing here syncs â€” that is still yours to ask
   for.
 
 ## 0.8.1
@@ -261,8 +285,8 @@ Upgrade both machines.**
 
 - The session open in this window is tagged **current**, alongside **live** for
   any session with a Claude Code process attached. Ownership comes from
-  parentage — the Claude extension spawns its CLI from the same extension host
-  this code runs in — and where a window holds several, the most recently
+  parentage â€” the Claude extension spawns its CLI from the same extension host
+  this code runs in â€” and where a window holds several, the most recently
   written transcript is taken as the one being typed in.
 - The lookup does not delay the panel: the first one costs about a second on
   Windows, so it runs in the background and the panel refreshes if the answer
@@ -278,8 +302,8 @@ Upgrade both machines.**
 ## 0.7.4
 
 - **Session names now match what Claude Code shows.** The title record has no
-  fixed position — one real transcript carries its summary at line 4, another at
-  line 267 of 269, a third a quarter of the way in — and only the head was being
+  fixed position â€” one real transcript carries its summary at line 4, another at
+  line 267 of 269, a third a quarter of the way in â€” and only the head was being
   read, so sessions with a later title fell back to their first prompt. Both ends
   are read now, the newest record wins, and a file small enough to read whole is
   read whole rather than showing a name that has since been replaced.
@@ -287,13 +311,13 @@ Upgrade both machines.**
 ## 0.7.3
 
 - Hand-drawn Marketplace icon: two machines either side of the sync arrows.
-- The activity bar glyph matches it — the same sync arrows, now with a burst
+- The activity bar glyph matches it â€” the same sync arrows, now with a burst
   inside the ring.
 - `npm run icon` no longer overwrites the icon; it needs `--force`.
 
 ## 0.7.2
 
-**Fixes a panel stuck on "Loading…" in 0.7.1. Upgrade.**
+**Fixes a panel stuck on "Loadingâ€¦" in 0.7.1. Upgrade.**
 
 - An apostrophe written as `\'` inside the panel's inline script was consumed by
   the surrounding template literal, leaving an unterminated string. The whole
@@ -318,7 +342,7 @@ Upgrade both machines.**
 ## 0.7.0
 
 - **Setup is now explained in the panel.** A first run lists the four things to
-  do in Google Cloud Console, each with a button that opens the right page —
+  do in Google Cloud Console, each with a button that opens the right page â€”
   including the one that is easy to miss: publishing the consent screen, without
   which Google expires the sign-in every seven days.
 - The sign-in step says what to do about the "unverified app" warning, since
@@ -326,7 +350,7 @@ Upgrade both machines.**
 
 ## 0.6.1
 
-- Ready to publish: a 128×128 icon, and a `vscode:prepublish` step so
+- Ready to publish: a 128Ã—128 icon, and a `vscode:prepublish` step so
   `vsce publish` builds through the same checks as everything else.
 - **Embedding an OAuth client is now opt-in** (`CLAUDE_SYNC_EMBED=1` alongside
   the credentials). `vsce publish` runs the same build, and a shell that merely
@@ -341,24 +365,24 @@ Upgrade both machines.**
   the first prompt, reading the end of the file so a rename made hours into a
   70 MB conversation is still found, and the most recent rename wins.
 - **Fixed: drive-letter case.** Claude Code encodes the working directory
-  exactly as given — `C:\Users\me\app` becomes `C--Users-me-app`, not
+  exactly as given â€” `C:\Users\me\app` becomes `C--Users-me-app`, not
   `c--Users-me-app`. Lower-casing it here risked creating a second folder
   alongside the real one on a machine that had none yet.
 
 ## 0.5.1
 
 - **Progress bar while syncing**, with the file being worked on underneath. It
-  starts indeterminate while Drive is being listed — the total is not knowable
-  before that — then becomes a real fraction over every file and transcript.
+  starts indeterminate while Drive is being listed â€” the total is not knowable
+  before that â€” then becomes a real fraction over every file and transcript.
 - The sync icon no longer dims while it spins; the spin alone says it is busy.
-- **"Sync others…" removed.**
+- **"Sync othersâ€¦" removed.**
 - The global section is now **"Shared from ~/.claude"**, with the scopes as
   chips and each figure on its own line instead of one crowded row.
 
 ## 0.5.0
 
 - **Automatic syncing is gone.** No polling timer, no file watcher, no sync on
-  startup. A cycle runs when you press ⟳, run **Sync Now**, sign in, adopt a
+  startup. A cycle runs when you press âŸ³, run **Sync Now**, sign in, adopt a
   project, or switch a session back on. The `enabled`, `pullIntervalSec` and
   `pushDebounceMs` settings are removed, as is the pause button.
 - **The version is shown in the panel header**, so it is obvious which build is
@@ -366,7 +390,7 @@ Upgrade both machines.**
 - **Fixed: the session checkboxes did nothing.** A stray NUL byte had replaced
   the space in the separator used to parse `"<project> <session>"`, so every
   toggle was discarded before it reached the state file. Ticking a session held
-  only on Drive now brings it back — and, since nothing runs in the background
+  only on Drive now brings it back â€” and, since nothing runs in the background
   any more, doing so starts a sync immediately.
 
 ## 0.4.2
@@ -374,7 +398,7 @@ Upgrade both machines.**
 - Deleting a session updates the panel immediately. The row used to linger as
   "on Drive" until the next cycle refreshed the cached listing, which made a
   successful delete look like it had not worked and left you clicking sync.
-- Each delete now says exactly what it did — and, for *Delete everywhere*,
+- Each delete now says exactly what it did â€” and, for *Delete everywhere*,
   that another machine still holding the transcript will upload it again unless
   it is deleted there too.
 
@@ -390,8 +414,8 @@ Upgrade both machines.**
 ## 0.4.0
 
 - **Per-session list with checkboxes.** Each project expands to show its
-  sessions — labelled with the conversation's summary or first prompt rather
-  than a bare UUID — with size and whether the copy is synced, local only, or
+  sessions â€” labelled with the conversation's summary or first prompt rather
+  than a bare UUID â€” with size and whether the copy is synced, local only, or
   waiting on Drive. Unticking one stops it being uploaded *and* downloaded.
 - Sessions held only on Drive appear too, so a large transcript can be switched
   off before it is ever pulled to this machine.
@@ -402,7 +426,7 @@ Upgrade both machines.**
 **Fixes transcript corruption. Upgrade before syncing again.**
 
 - Downloaded transcripts were decoded chunk by chunk, so any character whose
-  UTF-8 bytes straddled a chunk boundary — Thai, CJK, emoji — was replaced with
+  UTF-8 bytes straddled a chunk boundary â€” Thai, CJK, emoji â€” was replaced with
   `U+FFFD` and lost. Roughly one character per 32 KB of text. Decoding now
   carries incomplete byte sequences across boundaries.
 - That corruption also caused **false forks**: a downloaded copy no longer
@@ -414,10 +438,10 @@ Upgrade both machines.**
 
 - **A network blip no longer signs you out.** Any failure while refreshing the
   access token was treated as a revoked grant, so a dropped connection deleted
-  the refresh token and demanded a fresh sign-in — reported, confusingly, as
+  the refresh token and demanded a fresh sign-in â€” reported, confusingly, as
   "sign-in expired (fetch failed)". Only an actual rejection from Google now
   clears the sign-in; unreachable network, proxy replies and 5xx are retried.
-- Being offline shows as `$(cloud-offline)` in the status bar and one "offline —
+- Being offline shows as `$(cloud-offline)` in the status bar and one "offline â€”
   will retry" line in the activity feed, rather than an error every poll.
 
 ## 0.3.2
@@ -425,7 +449,7 @@ Upgrade both machines.**
 - **An explicit sync now uploads the session you were just in.** The idle wait
   that stops a live conversation from re-uploading every tick used to apply to
   manual syncs too, so clicking sync before shutting down left the last turns
-  behind — exactly the moment they matter. Background syncs still wait.
+  behind â€” exactly the moment they matter. Background syncs still wait.
 
 ## 0.3.1
 
@@ -450,7 +474,7 @@ Hardening for two machines syncing at the same moment.
 - **Duplicate Drive folders and files fixed.** Drive allows two entries with the
   same name in one parent, so simultaneous creates used to leave two folders and
   the machines would sync into different ones forever. Creates are now
-  re-checked: the older entry wins — decided identically on every machine — and
+  re-checked: the older entry wins â€” decided identically on every machine â€” and
   the loser's empty duplicate is removed.
 - **Polling is jittered** so machines left running side by side drift apart
   instead of colliding on every tick.
@@ -458,7 +482,7 @@ Hardening for two machines syncing at the same moment.
 ## 0.2.1
 
 - The panel now says when each scope was last written on Drive **and which
-  machine wrote it** — "4m ago from OFFICE-PC", or "this machine" when it was
+  machine wrote it** â€” "4m ago from OFFICE-PC", or "this machine" when it was
   this one. Every uploaded file is stamped with its machine name.
 - A header line shows the last completed sync cycle and this machine's name.
 - The inline webview script is syntax-checked during build, so a typo there
@@ -468,9 +492,9 @@ Hardening for two machines syncing at the same moment.
 
 - New sidebar panel: account, per-project rows with file counts and last
   up/down times, global scope summary, conflicts, and an activity feed with an
-  Issues filter. Every action is a single click — sync, pause, switch account,
+  Issues filter. Every action is a single click â€” sync, pause, switch account,
   resolve a conflict, open the log.
-- **Sync others…** adopts a project that exists on Drive but is not open in this
+- **Sync othersâ€¦** adopts a project that exists on Drive but is not open in this
   window: pick it, point at the local checkout, and it keeps syncing from then on.
 - Per-scope counters and timestamps persist across reloads.
 
@@ -490,13 +514,13 @@ First release.
   `memory/` through your own Google Drive, using the `drive.file` scope.
 - Session transcripts backed up per project once a session has gone idle, gzipped,
   with modification times preserved on download.
-- Project path encoding that matches Claude Code exactly — every non-alphanumeric
+- Project path encoding that matches Claude Code exactly â€” every non-alphanumeric
   character becomes `-`, so Windows drive letters, spaces and underscores all land in
   the folder Claude Code actually uses.
 - Paths inside transcripts rewritten on download, streamed so large files never sit in
   memory whole.
 - Three-way merge via `git merge-file`; conflicts leave the local file untouched and
-  surface in the sidebar with a local ↔ remote diff.
+  surface in the sidebar with a local â†” remote diff.
 - `settings.json` (opt-in) stored with `${HOME}` templating so hook and MCP paths
   survive moving between machines and operating systems.
 - Background sync: poll on an interval, push shortly after a local write.

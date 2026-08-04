@@ -1,15 +1,15 @@
 # Claude State Sync — releases
 
 [![Marketplace](https://img.shields.io/badge/Marketplace-install-0098FF)](https://marketplace.visualstudio.com/items?itemName=triplepai14.claude-state-sync)
-![Version](https://img.shields.io/badge/version-0.9.14-blue)
+![Version](https://img.shields.io/badge/version-0.9.15-blue)
 ![VS Code](https://img.shields.io/badge/VS%20Code-1.85+-007ACC)
 ![Storage](https://img.shields.io/badge/storage-your%20own%20Google%20Drive-4285F4?logo=googledrive&logoColor=white)
 ![Scope](https://img.shields.io/badge/OAuth%20scope-drive.file-34A853)
 ![Servers](https://img.shields.io/badge/third--party%20servers-none-brightgreen)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
-Keep Claude Code's working state — memory, skills, plans, `CLAUDE.md` and session
-transcripts — in step across machines, through **your own** Google Drive. No
+Keep Claude Code's working state Ã¢â‚¬â€ memory, skills, plans, `CLAUDE.md` and session
+transcripts Ã¢â‚¬â€ in step across machines, through **your own** Google Drive. No
 third-party server, and nothing syncs unless you ask it to. It also copies a
 conversation from one project into another, rewriting the paths recorded inside
 the transcript so it belongs there.
@@ -63,14 +63,14 @@ You are creating **two separate things**, and it helps to keep them apart:
 | **OAuth client** | An ID and a secret, created once in Google Cloud Console | The *application* |
 | **Sign-in** | The browser consent screen you approve | *You*, granting that application access to *your* Drive |
 
-Step 1–4 below create the first. Step 5 does the second.
+Step 1Ã¢â‚¬â€œ4 below create the first. Step 5 does the second.
 
 ## 1. Create a Google Cloud project
 
 Go to <https://console.cloud.google.com/projectcreate>, give it any name
 (`claude-state-sync` is fine), and create it.
 
-"Cloud project" sounds like a server you rent. It is not — nothing runs there.
+"Cloud project" sounds like a server you rent. It is not Ã¢â‚¬â€ nothing runs there.
 It is a container for the registration. It is free and needs no credit card.
 
 ## 2. Enable the Google Drive API
@@ -80,7 +80,7 @@ check the project selector at the top is your new project, and press **Enable**.
 
 Skip this and sign-in works but every sync fails with "API not enabled".
 
-## 3. Publish the consent screen — do not skip this
+## 3. Publish the consent screen Ã¢â‚¬â€ do not skip this
 
 Go to <https://console.cloud.google.com/auth/audience>.
 
@@ -101,14 +101,14 @@ name is what you will see on the consent screen in the next step.
 
 ## 4. Create the OAuth client
 
-Go to <https://console.cloud.google.com/auth/clients> → **Create client** →
-application type **Desktop app** → **Create**.
+Go to <https://console.cloud.google.com/auth/clients> Ã¢â€ â€™ **Create client** Ã¢â€ â€™
+application type **Desktop app** Ã¢â€ â€™ **Create**.
 
 You get a **Client ID** ending in `.apps.googleusercontent.com` and a **Client
 secret**. Both stay visible in the console, so there is no need to write them
 down carefully.
 
-The "secret" is not really secret here — Google's own guidance for desktop
+The "secret" is not really secret here Ã¢â‚¬â€ Google's own guidance for desktop
 applications says it is embedded in the application and "obviously not treated
 as a secret". The sign-in is protected by PKCE and a loopback redirect instead.
 
@@ -117,32 +117,32 @@ as a secret". The sign-in is protected by PKCE and a loopback redirect instead.
 Open the **Claude State Sync** panel (the cloud icon in the activity bar). It
 lists the same four steps with buttons that open each page, then:
 
-1. Fill in the **Client ID** and **Client secret** boxes and press **Save** —
-   or paste the whole `client_secret….json` Google gave you into either box and
-   both fill themselves in. They are stored in VS Code's secret storage —
-   Credential Manager on Windows, Keychain on macOS, libsecret on Linux — never
+1. Fill in the **Client ID** and **Client secret** boxes and press **Save** Ã¢â‚¬â€
+   or paste the whole `client_secretÃ¢â‚¬Â¦.json` Google gave you into either box and
+   both fill themselves in. They are stored in VS Code's secret storage Ã¢â‚¬â€
+   Credential Manager on Windows, Keychain on macOS, libsecret on Linux Ã¢â‚¬â€ never
    in `settings.json`.
 2. Press **Sign in to Google Drive**. Your browser opens Google's consent
    screen.
-3. If you see **"Google hasn't verified this app"**, choose **Advanced** → **Go
+3. If you see **"Google hasn't verified this app"**, choose **Advanced** Ã¢â€ â€™ **Go
    to <your app name>**. This is expected: the unverified developer is you.
 4. Approve. The browser says you can close the tab.
 
 Repeat step 5 on every other machine, with the same client and the same Google
-account. Steps 1–4 are never repeated.
+account. Steps 1Ã¢â‚¬â€œ4 are never repeated.
 
 ### Only the `drive.file` scope
 
 The extension asks for `drive.file`, which can see **only files it created
-itself**. The rest of your Drive is invisible to it — not by policy, but because
+itself**. The rest of your Drive is invisible to it Ã¢â‚¬â€ not by policy, but because
 Google will not return those files to this client at all.
 
 ---
 
 # Daily use
 
-Press **⟳** in the panel to sync. A sync happens when you ask for one, when you
-sign in, or when you switch a session back on — never on a timer. While it runs
+Press **Ã¢Å¸Â³** in the panel to sync. A sync happens when you ask for one, when you
+sign in, or when you switch a session back on Ã¢â‚¬â€ never on a timer. While it runs
 the panel shows the file being worked on, the percentage and the count, so a
 long sync is not a spinner you have to guess at.
 
@@ -151,8 +151,8 @@ close shows up without you doing anything. That only re-reads local files; it
 never talks to Drive.
 
 **When another machine has pushed something you have not pulled, the panel says
-so**: *2 sessions from laptop waiting on Drive — pull now*, and the status bar
-gains a ⬇ with the count. Noticing is one small request — Drive is asked what
+so**: *2 sessions from laptop waiting on Drive Ã¢â‚¬â€ pull now*, and the status bar
+gains a Ã¢Â¬â€¡ with the count. Noticing is one small request Ã¢â‚¬â€ Drive is asked what
 changed since this machine last looked, using Drive's own modified times and
 the pushing machine's name recorded on every upload, so your own pushes are
 never echoed back and a skewed clock cannot hide anything. It runs when the
@@ -160,16 +160,16 @@ panel opens and every few minutes while it stays open; nothing is downloaded
 until you pull. `claudeStateSync.remoteCheck.minutes` sets the pace (0 turns it
 off).
 
-**Handing a conversation to another machine:** press ⟳ before you leave machine
-A — and let it finish; what B can pull is whatever had reached Drive when B
-looked. On machine B open the project, press ⟳, then run `claude --resume` in a
+**Handing a conversation to another machine:** press Ã¢Å¸Â³ before you leave machine
+A Ã¢â‚¬â€ and let it finish; what B can pull is whatever had reached Drive when B
+looked. On machine B open the project, press Ã¢Å¸Â³, then run `claude --resume` in a
 terminal. The session is in the picker with every path inside it already
 rewritten to B's checkout. If that session is already **open** on B, it is left
-untouched until it closes — a running conversation keeps its state in the
+untouched until it closes Ã¢â‚¬â€ a running conversation keeps its state in the
 window, so replacing the file underneath would only disagree with what you see.
-Close it, press ⟳, resume.
+Close it, press Ã¢Å¸Â³, resume.
 
-**Session names** come from the transcript itself — the name you set with
+**Session names** come from the transcript itself Ã¢â‚¬â€ the name you set with
 `/rename`, else the summary Claude derives, else the first prompt. A session
 that is **running right now** is marked `live` and shows its first prompt: while
 a session is open Claude keeps its title in memory and only writes it into the
@@ -178,28 +178,28 @@ read. Close the session and the name catches up.
 
 **Choosing what syncs:** each project lists its sessions, labelled by
 conversation rather than by UUID. Untick one to stop it moving in either
-direction — useful for a 70 MB transcript you do not want on a laptop. The
+direction Ã¢â‚¬â€ useful for a 70 MB transcript you do not want on a laptop. The
 trash icon deletes a session here, or here and on Drive; the one beside it
 copies a session into another project, rewriting every path inside the
-transcript so it belongs there. That one copies rather than moves on purpose —
+transcript so it belongs there. That one copies rather than moves on purpose Ã¢â‚¬â€
 the rewrite touches every line of the only record of a conversation, so the
 result is checked and the original is left alone for you to delete afterwards.
 Neither is offered while a session is running.
 
 **Each session says where it stands**: `synced`, or `not synced` in amber the
-moment a conversation gains turns Drive lacks — the reminder to
-press ⟳ before switching machines. `local only` and `on Drive` mean only one
+moment a conversation gains turns Drive lacks Ã¢â‚¬â€ the reminder to
+press Ã¢Å¸Â³ before switching machines. `local only` and `on Drive` mean only one
 side has it at all, and `live` marks a session running right now. Synced-ness
-is read off numbers the sync already keeps — the mtime recorded on the Drive
-copy against the file's own — so the tag costs nothing to show.
+is read off numbers the sync already keeps Ã¢â‚¬â€ the mtime recorded on the Drive
+copy against the file's own Ã¢â‚¬â€ so the tag costs nothing to show.
 
 **Conflicts:** files that changed on both sides are merged with `git merge-file`.
 Overlapping edits leave your local file untouched and raise a conflict in the
-panel, with a local ↔ remote diff and *Keep Local* / *Take Remote* / *Open
+panel, with a local Ã¢â€ â€ remote diff and *Keep Local* / *Take Remote* / *Open
 Merged*.
 
 **Sessions continued on two machines** are compared by content. If one is simply
-further along it wins; if they genuinely forked, both are kept — the incoming
+further along it wins; if they genuinely forked, both are kept Ã¢â‚¬â€ the incoming
 copy is parked in `~/.claude-state-sync/forks/`, outside the folder Claude Code
 scans, so `claude --resume` still shows one entry.
 
@@ -212,7 +212,7 @@ scans, so `claude --resume` still shows one entry.
   local files are never removed automatically.
 - Only open workspace folders sync per-project state. Global scopes always sync.
 - Transcripts contain your prompts, replies and file contents Claude read. They
-  land in your Google Drive — treat that folder as sensitive.
+  land in your Google Drive Ã¢â‚¬â€ treat that folder as sensitive.
 
 # License
 
