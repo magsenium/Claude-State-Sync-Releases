@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.9.2
+
+- The copy and delete buttons on each session are always visible rather than
+  appearing on hover. A control nobody knows is there may as well not exist, and
+  hover-only ones are awkward on a touchpad.
+
 ## 0.9.1
 
 - **Case comparisons now follow the filesystem.** Folder matching and path
