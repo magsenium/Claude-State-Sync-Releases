@@ -1,5 +1,26 @@
 # Changelog
 
+## 0.9.14
+
+**The not-synced tag no longer cries wolf. Reported within the hour by its
+first user — twice, correctly.**
+
+- **Opening a session just to read it flipped the tag.** Claude Code touches
+  the transcript when a session is opened: the mtime moves, the size does not.
+  Verified against a real file — modified time newer, grown by exactly zero
+  bytes. A touch is not a change; same size now reads as in sync.
+- **Closing a session after syncing flipped it too**, which read as "you must
+  close before you sync". Closing writes derived records — the summary, the
+  title. The tag now reads only the bytes appended since the last push and asks
+  whether any of them is a conversation turn (a record with a `uuid`; summaries
+  carry `leafUuid`, which deliberately does not match). Titles and summaries
+  travel on the next sync as they always did — quietly.
+- Reading the appended bytes costs almost nothing: on a 70 MB transcript whose
+  owner pressed close, the tail is a few hundred bytes, and the answer is
+  cached until the file changes again.
+- A transcript that *shrank* against Drive's copy is tagged rather than
+  explained away — that is not what an append looks like.
+
 ## 0.9.13
 
 - **The `not synced` tag now works from the moment 0.9.12 is installed**, not

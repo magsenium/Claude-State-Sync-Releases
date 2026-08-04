@@ -1,7 +1,7 @@
 # Claude State Sync — releases
 
 [![Marketplace](https://img.shields.io/badge/Marketplace-install-0098FF)](https://marketplace.visualstudio.com/items?itemName=triplepai14.claude-state-sync)
-![Version](https://img.shields.io/badge/version-0.9.13-blue)
+![Version](https://img.shields.io/badge/version-0.9.14-blue)
 ![VS Code](https://img.shields.io/badge/VS%20Code-1.85+-007ACC)
 ![Storage](https://img.shields.io/badge/storage-your%20own%20Google%20Drive-4285F4?logo=googledrive&logoColor=white)
 ![Scope](https://img.shields.io/badge/OAuth%20scope-drive.file-34A853)
@@ -187,7 +187,7 @@ result is checked and the original is left alone for you to delete afterwards.
 Neither is offered while a session is running.
 
 **Each session says where it stands**: `synced`, or `not synced` in amber the
-moment you type into a conversation after its last sync — the reminder to
+moment a conversation gains turns Drive lacks — the reminder to
 press ⟳ before switching machines. `local only` and `on Drive` mean only one
 side has it at all, and `live` marks a session running right now. Synced-ness
 is read off numbers the sync already keeps — the mtime recorded on the Drive
