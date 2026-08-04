@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.9.3
+
+- The description now says that sessions can be copied between projects, which
+  the listing never mentioned.
+
 ## 0.9.2
 
 - The copy and delete buttons on each session are always visible rather than

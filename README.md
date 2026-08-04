@@ -13,7 +13,7 @@ Problems and requests: [open an issue](https://github.com/triplepai14/Claude-Sta
 ---
 
 [![Marketplace](https://img.shields.io/badge/Marketplace-install-0098FF)](https://marketplace.visualstudio.com/items?itemName=triplepai14.claude-state-sync)
-![Version](https://img.shields.io/badge/version-0.9.2-blue)
+![Version](https://img.shields.io/badge/version-0.9.3-blue)
 ![VS Code](https://img.shields.io/badge/VS%20Code-1.85+-007ACC)
 ![Storage](https://img.shields.io/badge/storage-your%20own%20Google%20Drive-4285F4?logo=googledrive&logoColor=white)
 ![Scope](https://img.shields.io/badge/OAuth%20scope-drive.file-34A853)
@@ -22,23 +22,9 @@ Problems and requests: [open an issue](https://github.com/triplepai14/Claude-Sta
 
 Keep Claude Code's working state — memory, skills, plans, `CLAUDE.md` and session
 transcripts — in step across machines, through **your own** Google Drive. No
-third-party server, and nothing syncs unless you ask it to.
-
-The thing this gets right is **project path encoding**. Claude Code stores
-per-project state under `~/.claude/projects/<encoded-path>/`, where the encoded
-path is the project's absolute path with **every non-alphanumeric character**
-replaced by `-`:
-
-```
-e:\ProjectA\Github\      ->  e--ProjectA-Github-
-c:\Scripts\VSCode        ->  c--Scripts-VSCode
-\\server\Some_Folder\App ->  --server-Some-Folder-App
-```
-
-Miss any part of that rule — leave the drive-letter colon, keep an underscore —
-and you read and write a folder Claude Code never created, silently. The
-absolute path is also written *inside* every transcript, so moving a session
-means rewriting its contents, not just renaming a folder.
+third-party server, and nothing syncs unless you ask it to. It also copies a
+conversation from one project into another, rewriting the paths recorded inside
+the transcript so it belongs there.
 
 ![The Claude State Sync panel: account, project, session list with checkboxes, shared scopes and activity](https://github.com/triplepai14/Claude-State-Sync-Releases/raw/main/media/screenshot-panel.png)
 
