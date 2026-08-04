@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.9.18
+
+- **The updates banner names the project**: *1 session in acme/web from
+  laptop*. Drive answers the update query with a flat list of files and no
+  folder in it, so a push to a project you did not have open read exactly like
+  one to the project you did — which is a surprise every time.
+- **And it no longer offers to pull what this window cannot pull.** A window
+  syncs the projects it has open; for anything else the banner says so —
+  *open that project to sync it* — rather than showing a button that would run
+  a sync doing nothing for the thing it was pointing at.
+- Uploads now record which project they belong to. Files pushed before this
+  fall back to the pushing machine's own folder name, so even old ones are
+  named rather than anonymous.
+
 ## 0.9.17
 
 **Fixes `not synced` appearing on sessions nobody edited. Upgrade.**

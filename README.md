@@ -1,7 +1,7 @@
 # Claude State Sync — releases
 
 [![Marketplace](https://img.shields.io/badge/Marketplace-install-0098FF)](https://marketplace.visualstudio.com/items?itemName=triplepai14.claude-state-sync)
-![Version](https://img.shields.io/badge/version-0.9.17-blue)
+![Version](https://img.shields.io/badge/version-0.9.18-blue)
 ![VS Code](https://img.shields.io/badge/VS%20Code-1.85+-007ACC)
 ![Storage](https://img.shields.io/badge/storage-your%20own%20Google%20Drive-4285F4?logo=googledrive&logoColor=white)
 ![Scope](https://img.shields.io/badge/OAuth%20scope-drive.file-34A853)
@@ -151,7 +151,8 @@ close shows up without you doing anything. That only re-reads local files; it
 never talks to Drive.
 
 **When another machine has pushed something you have not pulled, the panel says
-so**: *2 sessions from laptop waiting on Drive — pull now*, and the status bar
+so**: *2 sessions in acme/web from laptop waiting on Drive — pull now*, and the
+status bar
 gains a ⬇ with the count. Noticing is one small request — Drive is asked what
 changed since this machine last looked, using Drive's own modified times and
 the pushing machine's name recorded on every upload, so your own pushes are
