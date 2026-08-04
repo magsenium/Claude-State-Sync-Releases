@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.9.1
+
+- **Case comparisons now follow the filesystem.** Folder matching and path
+  rewriting ignored case everywhere, which is right on Windows and macOS but
+  wrong on Linux, where `/home/me/App` and `/home/me/app` are different
+  projects: a session could have bound to the wrong folder, or a rewrite could
+  have altered a path it should not have touched. Both branches are tested.
+- Cross-platform audit otherwise clean — `os.homedir()` and `os.tmpdir()` for
+  locations, `path.join` throughout, the only external program is `git`, and the
+  session watcher is non-recursive, which Linux requires.
+
 ## 0.9.0
 
 - **Copy a session into another project.** Each row gains a copy button next to
