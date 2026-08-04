@@ -5,7 +5,7 @@ extension. The extension's source is kept in a private repository; this one carr
 what you need to install and use it.
 
 **[Install from the Marketplace](https://marketplace.visualstudio.com/items?itemName=triplepai14.claude-state-sync)**
-— or download the `.vsix` here and run
+— or grab the `.vsix` from [Releases](https://github.com/triplepai14/Claude-State-Sync-Releases/releases/latest) and run
 `code --install-extension claude-state-sync-<version>.vsix`.
 
 Problems and requests: [open an issue](https://github.com/triplepai14/Claude-State-Sync-Releases/issues).
