@@ -1,5 +1,24 @@
 # Changelog
 
+## 0.9.11
+
+- **The panel now tells you when another machine has pushed something you have
+  not pulled**: a banner — *2 sessions from laptop waiting on Drive — pull
+  now* — and a ⬇ count in the status bar. Until now the only way to know
+  whether machine A's sync had arrived was to pull and see.
+- Noticing costs one small request: Drive is asked what changed since this
+  machine last looked. The decision uses Drive's own modified times as the
+  watermark and the pushing machine's name recorded on every upload — so your
+  own pushes are never echoed back, a skewed local clock cannot hide anything,
+  and no hashes or downloads are involved in noticing. Whether a pull actually
+  replaces a file is still decided the usual way: size and mtime for
+  transcripts, md5 for the small files, record uuids on any dispute.
+- Checked when the panel opens and every few minutes while it stays open —
+  never in the background with the panel closed, never twice within a minute.
+  `claudeStateSync.remoteCheck.minutes` sets the pace; 0 turns it off.
+- The news persists until a sync pulls it, so noticing is not forgetting:
+  re-checks cannot lose what was already announced.
+
 ## 0.9.10
 
 **Fixes a machine that syncs and still never sees the other side's latest turns.

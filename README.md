@@ -1,7 +1,7 @@
 # Claude State Sync — releases
 
 [![Marketplace](https://img.shields.io/badge/Marketplace-install-0098FF)](https://marketplace.visualstudio.com/items?itemName=triplepai14.claude-state-sync)
-![Version](https://img.shields.io/badge/version-0.9.10-blue)
+![Version](https://img.shields.io/badge/version-0.9.11-blue)
 ![VS Code](https://img.shields.io/badge/VS%20Code-1.85+-007ACC)
 ![Storage](https://img.shields.io/badge/storage-your%20own%20Google%20Drive-4285F4?logo=googledrive&logoColor=white)
 ![Scope](https://img.shields.io/badge/OAuth%20scope-drive.file-34A853)
@@ -149,6 +149,16 @@ long sync is not a spinner you have to guess at.
 The panel itself does keep up to date on its own, so a session you start or
 close shows up without you doing anything. That only re-reads local files; it
 never talks to Drive.
+
+**When another machine has pushed something you have not pulled, the panel says
+so**: *2 sessions from laptop waiting on Drive — pull now*, and the status bar
+gains a ⬇ with the count. Noticing is one small request — Drive is asked what
+changed since this machine last looked, using Drive's own modified times and
+the pushing machine's name recorded on every upload, so your own pushes are
+never echoed back and a skewed clock cannot hide anything. It runs when the
+panel opens and every few minutes while it stays open; nothing is downloaded
+until you pull. `claudeStateSync.remoteCheck.minutes` sets the pace (0 turns it
+off).
 
 **Handing a conversation to another machine:** press ⟳ before you leave machine
 A — and let it finish; what B can pull is whatever had reached Drive when B
