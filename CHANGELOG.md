@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.9.7
+
+- **A first run now opens on what the extension does**, not on four errands in
+  Google Cloud Console. Four lines — state on every machine, carrying a
+  conversation across, your own Drive, nothing without asking — then the setup.
+- **And on your own projects and sessions, by name.** All of that is read from
+  disk and needs no Google account, so the panel can show what would be carried
+  across before you have connected anything: the projects it found, the
+  conversations in them and what they weigh.
+- The sign-in step shows the same, so the last screen before connecting says
+  what connecting is for.
+- **The build now draws the panel rather than only parsing it.** A missing
+  function or a property read off nothing throws when the panel renders, which
+  ships as a blank sidebar with a clean build — that has happened here once
+  already. `check-webview.mjs` runs the panel in every state it has, including a
+  machine with no projects, and fails on a throw, on nothing drawn, and on
+  `undefined` or `NaN` reaching the markup.
+
 ## 0.9.6
 
 - **The client is entered in the panel now**, in two boxes with a Save button,
