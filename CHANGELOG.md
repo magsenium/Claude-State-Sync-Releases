@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.9.17
+
+**Fixes `not synced` appearing on sessions nobody edited. Upgrade.**
+
+- **Opening a session tagged it — and every other session too.** A session that
+  is already in sync is skipped by the sync, and the skip recorded nothing, so
+  those sessions had no baseline to be compared against. With no baseline the
+  panel fell back to the time of the last sync cycle, and since opening a
+  session moves its modified time and nothing else, everything anyone so much
+  as looked at read as edited.
+- A sync now records a baseline for the sessions it **leaves alone**, not only
+  for the ones it moves. That is what the comparison needed all along: after
+  one sync every session has one, and the tag is exact.
+- With no baseline the panel now says nothing rather than guessing from a
+  timestamp. A tag that cries wolf is worse than a tag that waits one cycle.
+
 ## 0.9.16
 
 - **A forked session is settled from the panel.** The red `forked` tag is now
