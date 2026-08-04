@@ -11,8 +11,9 @@ what you need to install and use it.
 Problems and requests: [open an issue](https://github.com/triplepai14/Claude-State-Sync-Releases/issues).
 
 ---
+
 [![Marketplace](https://img.shields.io/badge/Marketplace-install-0098FF)](https://marketplace.visualstudio.com/items?itemName=triplepai14.claude-state-sync)
-![Version](https://img.shields.io/badge/version-0.8.2-blue)
+![Version](https://img.shields.io/badge/version-0.9.0-blue)
 ![VS Code](https://img.shields.io/badge/VS%20Code-1.85+-007ACC)
 ![Storage](https://img.shields.io/badge/storage-your%20own%20Google%20Drive-4285F4?logo=googledrive&logoColor=white)
 ![Scope](https://img.shields.io/badge/OAuth%20scope-drive.file-34A853)
@@ -184,7 +185,9 @@ read. Close the session and the name catches up.
 **Choosing what syncs:** each project lists its sessions, labelled by
 conversation rather than by UUID. Untick one to stop it moving in either
 direction — useful for a 70 MB transcript you do not want on a laptop. The
-trash icon deletes a session here, or here and on Drive.
+trash icon deletes a session here, or here and on Drive; the arrow next to it
+moves one to another project, rewriting every path inside the transcript so it
+belongs there. Neither is offered while a session is running.
 
 **Conflicts:** files that changed on both sides are merged with `git merge-file`.
 Overlapping edits leave your local file untouched and raise a conflict in the

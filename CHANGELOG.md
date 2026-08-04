@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.9.0
+
+- **Move a session to another project.** Each row gains a move button next to
+  the delete one: pick a project Claude Code already knows, or any folder, and
+  the transcript is re-filed under it with every path inside rewritten. Filing
+  is by encoded directory *and* by paths written throughout the file, so this is
+  a rewrite rather than a rename.
+- The copy filed on Drive under the old project is removed as part of the move,
+  since otherwise the next sync would pull the session straight back. Nothing is
+  lost — the transcript is already under the new project and goes up from there.
+- The button is disabled while a session is running: Claude would keep appending
+  to the original and the moved copy would go stale in silence.
+- `scripts/move-session.mjs` does the same from a terminal, for projects that
+  are not open.
+
 ## 0.8.2
 
 - The panel keeps itself up to date. Starting or closing a session used to
