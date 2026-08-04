@@ -11,6 +11,13 @@ what you need to install and use it.
 Problems and requests: [open an issue](https://github.com/triplepai14/Claude-State-Sync-Releases/issues).
 
 ---
+[![Marketplace](https://img.shields.io/badge/Marketplace-install-0098FF)](https://marketplace.visualstudio.com/items?itemName=triplepai14.claude-state-sync)
+![Version](https://img.shields.io/badge/version-0.8.2-blue)
+![VS Code](https://img.shields.io/badge/VS%20Code-1.85+-007ACC)
+![Storage](https://img.shields.io/badge/storage-your%20own%20Google%20Drive-4285F4?logo=googledrive&logoColor=white)
+![Scope](https://img.shields.io/badge/OAuth%20scope-drive.file-34A853)
+![Servers](https://img.shields.io/badge/third--party%20servers-none-brightgreen)
+[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
 Keep Claude Code's working state — memory, skills, plans, `CLAUDE.md` and session
 transcripts — in step across machines, through **your own** Google Drive. No
