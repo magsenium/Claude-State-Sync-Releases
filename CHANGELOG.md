@@ -1,5 +1,29 @@
 # Changelog
 
+## 0.9.10
+
+**Fixes a machine that syncs and still never sees the other side's latest turns.
+Upgrade both machines.**
+
+- **A stale path rewrite could freeze a session on one machine, permanently.**
+  A pulled transcript is rewritten to the local checkout by whichever build
+  pulled it. If the rewrite rules have changed since — the drive-letter case
+  fix, a moved project — the next pull differs from the local copy in bytes
+  while being the same conversation, and the byte comparison called that a
+  fork: the download was parked aside, the visible file left old. Every later
+  sync repeated it. Forks are now confirmed at the record level — line count
+  and the per-record uuids, which no rewrite touches — and only a fork the
+  records also show is treated as one.
+- **A session open on the receiving machine is no longer replaced underneath
+  the window.** The running conversation keeps its state in that process, so
+  the file swap changed nothing on screen while the process kept appending to
+  the swapped file — "sync did nothing", with two histories interleaving on
+  disk underneath. The pull now leaves a live session alone and says so in the
+  log; close it, sync, resume.
+- If machine B pressed sync while machine A was still uploading, B pulled
+  whatever had reached Drive at that moment. The README now says to let A
+  finish — the progress numbers from 0.9.4 show when that is.
+
 ## 0.9.9
 
 - **The setup screens now carry the whole panel underneath them**, not a summary

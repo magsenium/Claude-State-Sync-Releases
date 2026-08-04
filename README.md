@@ -1,7 +1,7 @@
 # Claude State Sync — releases
 
 [![Marketplace](https://img.shields.io/badge/Marketplace-install-0098FF)](https://marketplace.visualstudio.com/items?itemName=triplepai14.claude-state-sync)
-![Version](https://img.shields.io/badge/version-0.9.9-blue)
+![Version](https://img.shields.io/badge/version-0.9.10-blue)
 ![VS Code](https://img.shields.io/badge/VS%20Code-1.85+-007ACC)
 ![Storage](https://img.shields.io/badge/storage-your%20own%20Google%20Drive-4285F4?logo=googledrive&logoColor=white)
 ![Scope](https://img.shields.io/badge/OAuth%20scope-drive.file-34A853)
@@ -151,9 +151,13 @@ close shows up without you doing anything. That only re-reads local files; it
 never talks to Drive.
 
 **Handing a conversation to another machine:** press ⟳ before you leave machine
-A; on machine B open the project, press ⟳, then run `claude --resume` in a
+A — and let it finish; what B can pull is whatever had reached Drive when B
+looked. On machine B open the project, press ⟳, then run `claude --resume` in a
 terminal. The session is in the picker with every path inside it already
-rewritten to B's checkout.
+rewritten to B's checkout. If that session is already **open** on B, it is left
+untouched until it closes — a running conversation keeps its state in the
+window, so replacing the file underneath would only disagree with what you see.
+Close it, press ⟳, resume.
 
 **Session names** come from the transcript itself — the name you set with
 `/rename`, else the summary Claude derives, else the first prompt. A session
