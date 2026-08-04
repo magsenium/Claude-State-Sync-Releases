@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.9.12
+
+- **A session typed in after its last sync is tagged `not synced`**, in amber,
+  where `synced` used to keep saying otherwise. That tag is the answer to "did
+  I remember to press ⟳ before leaving?" — the one question the panel could
+  not answer, since `synced` only ever meant "a copy exists on Drive", not
+  "the copy is current".
+- The comparison costs nothing at sync time and nothing at panel time: every
+  upload already records the transcript's size and mtime on the Drive file,
+  and every pull stamps the local file with the same mtime — so on a synced
+  session the two clocks are equal, and a local file strictly past Drive's
+  has turns Drive lacks. The panel just compares the two numbers it already
+  had.
+- A push now updates the in-memory Drive listing it just wrote to, so a
+  session uploaded seconds ago reads as synced immediately rather than
+  after the next full cycle.
+
 ## 0.9.11
 
 - **The panel now tells you when another machine has pushed something you have

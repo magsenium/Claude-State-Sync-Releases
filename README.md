@@ -1,7 +1,7 @@
 # Claude State Sync — releases
 
 [![Marketplace](https://img.shields.io/badge/Marketplace-install-0098FF)](https://marketplace.visualstudio.com/items?itemName=triplepai14.claude-state-sync)
-![Version](https://img.shields.io/badge/version-0.9.11-blue)
+![Version](https://img.shields.io/badge/version-0.9.12-blue)
 ![VS Code](https://img.shields.io/badge/VS%20Code-1.85+-007ACC)
 ![Storage](https://img.shields.io/badge/storage-your%20own%20Google%20Drive-4285F4?logo=googledrive&logoColor=white)
 ![Scope](https://img.shields.io/badge/OAuth%20scope-drive.file-34A853)
@@ -185,6 +185,13 @@ transcript so it belongs there. That one copies rather than moves on purpose —
 the rewrite touches every line of the only record of a conversation, so the
 result is checked and the original is left alone for you to delete afterwards.
 Neither is offered while a session is running.
+
+**Each session says where it stands**: `synced`, or `not synced` in amber the
+moment you type into a conversation after its last sync — the reminder to
+press ⟳ before switching machines. `local only` and `on Drive` mean only one
+side has it at all, and `live` marks a session running right now. Synced-ness
+is read off numbers the sync already keeps — the mtime recorded on the Drive
+copy against the file's own — so the tag costs nothing to show.
 
 **Conflicts:** files that changed on both sides are merged with `git merge-file`.
 Overlapping edits leave your local file untouched and raise a conflict in the
