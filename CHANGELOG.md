@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.9.13
+
+- **The `not synced` tag now works from the moment 0.9.12 is installed**, not
+  from its second sync. The exact comparison needs the per-session metadata
+  that only a 0.9.12+ sync stores, and state written by older builds has none
+  of it — so the one session the tag was built for kept reading `synced` until
+  a sync happened to run. Until the metadata exists, the time of the last
+  completed sync stands in: a transcript modified after it is not on Drive
+  yet. With nothing known at all the panel says nothing rather than guesses.
+- Excluded sessions are never tagged. Drive being behind is exactly what
+  unticking asked for.
+
 ## 0.9.12
 
 - **A session typed in after its last sync is tagged `not synced`**, in amber,
