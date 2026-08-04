@@ -1,5 +1,25 @@
 # Changelog
 
+## 0.9.9
+
+- **The setup screens now carry the whole panel underneath them**, not a summary
+  of it: your projects, every session by name and size, the shared scopes, the
+  activity list. All of it is read from disk, so it is real and populated before
+  Google is involved at all — and it answers "what am I setting this up for"
+  better than any description above it does.
+- Sync appears on those screens too, disabled and saying why. A button that
+  materialises only once everything works gives no hint that it is the point of
+  the work.
+- Sign out and switch account stay hidden until there is an account to act on,
+  and the Drive row says *not connected yet* rather than *signed in*.
+- **Fixed: a project card said "sessions none yet" directly above its sessions.**
+  The count came from the sync stats, which a sync writes — so before the first
+  one it was 0 while the transcripts sat on disk in plain sight. It counts the
+  rows now.
+- The build pins what each screen must and must not contain, and the panel
+  fixture uses the field names the panel actually reads. It had invented its
+  own, so it was checking nothing about how a session draws.
+
 ## 0.9.8
 
 - **The screen you actually land on now shows your projects and sessions too.**
