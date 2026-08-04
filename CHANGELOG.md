@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.9.4
+
+- **A sync now says how far along it is** — the percentage and the file count
+  beside the name of the file being worked on. The fraction was already being
+  computed; it only ever set the width of a 2px bar, which on a long sync is
+  indistinguishable from a spinner.
+- **Fixed: the bar never showed the indeterminate phase.** It is drawn that way
+  while Drive is being listed, because the total cannot be counted before then —
+  but the moving segment was also given an inline `width:0%`, and an inline
+  style outranks the stylesheet, so what should have been a sliding bar was an
+  empty track.
+- **Fixed: the bar kept sliding after the total was known.** The animation was
+  never taken off once there was a real fraction, so the fill was positioned and
+  animated at once, travelling across the bar rather than filling it.
+- The bar is 3px rather than 2px, and the count uses tabular figures so it does
+  not jitter as the digits change.
+
 ## 0.9.3
 
 - The description now says that sessions can be copied between projects, which

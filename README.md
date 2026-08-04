@@ -1,19 +1,7 @@
 # Claude State Sync — releases
 
-Downloads, documentation and issue tracking for the **Claude State Sync** VS Code
-extension. The extension's source is kept in a private repository; this one carries
-what you need to install and use it.
-
-**[Install from the Marketplace](https://marketplace.visualstudio.com/items?itemName=triplepai14.claude-state-sync)**
-— or grab the `.vsix` from [Releases](https://github.com/triplepai14/Claude-State-Sync-Releases/releases/latest) and run
-`code --install-extension claude-state-sync-<version>.vsix`.
-
-Problems and requests: [open an issue](https://github.com/triplepai14/Claude-State-Sync-Releases/issues).
-
----
-
 [![Marketplace](https://img.shields.io/badge/Marketplace-install-0098FF)](https://marketplace.visualstudio.com/items?itemName=triplepai14.claude-state-sync)
-![Version](https://img.shields.io/badge/version-0.9.3-blue)
+![Version](https://img.shields.io/badge/version-0.9.4-blue)
 ![VS Code](https://img.shields.io/badge/VS%20Code-1.85+-007ACC)
 ![Storage](https://img.shields.io/badge/storage-your%20own%20Google%20Drive-4285F4?logo=googledrive&logoColor=white)
 ![Scope](https://img.shields.io/badge/OAuth%20scope-drive.file-34A853)
@@ -25,6 +13,8 @@ transcripts — in step across machines, through **your own** Google Drive. No
 third-party server, and nothing syncs unless you ask it to. It also copies a
 conversation from one project into another, rewriting the paths recorded inside
 the transcript so it belongs there.
+
+Problems and requests: [open an issue](https://github.com/triplepai14/Claude-State-Sync-Releases/issues).
 
 ![The Claude State Sync panel: account, project, session list with checkboxes, shared scopes and activity](https://github.com/triplepai14/Claude-State-Sync-Releases/raw/main/media/screenshot-panel.png)
 
@@ -150,7 +140,9 @@ Google will not return those files to this client at all.
 # Daily use
 
 Press **⟳** in the panel to sync. A sync happens when you ask for one, when you
-sign in, or when you switch a session back on — never on a timer.
+sign in, or when you switch a session back on — never on a timer. While it runs
+the panel shows the file being worked on, the percentage and the count, so a
+long sync is not a spinner you have to guess at.
 
 The panel itself does keep up to date on its own, so a session you start or
 close shows up without you doing anything. That only re-reads local files; it
