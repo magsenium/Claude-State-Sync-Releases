@@ -1,5 +1,25 @@
 # Changelog
 
+## 0.9.20
+
+**Fixes "delete everywhere" undoing itself. Upgrade every machine.**
+
+- **A session deleted everywhere came back.** Deleting removed the copy on
+  Drive and nothing else, so the next machine to sync pushed its own copy
+  straight back up, and the machine that asked for the deletion pulled it back
+  down. The deletion was real for about a minute.
+- A deletion now leaves a marker in place of the file. Every other machine
+  reads it and **stops pushing that session** — which is the half that needs no
+  permission, since re-uploading it would undo somebody's decision behind their
+  back.
+- **And the other machines are told**, which they never were: on the next sync
+  each one asks, once, whether to delete its own copy too. Declining is
+  remembered rather than asked again. Nothing else here removes a local
+  transcript without being asked and this does not either — but silence is no
+  longer mistaken for consent to put it back.
+- The delete dialog says all of that now, instead of "for every machine",
+  which was a promise the code did not keep.
+
 ## 0.9.19
 
 - **A transcript that was already damaged can be copied again.** The copy check

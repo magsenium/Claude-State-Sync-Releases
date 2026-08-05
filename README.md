@@ -1,7 +1,7 @@
 # Claude State Sync — releases
 
 [![Marketplace](https://img.shields.io/badge/Marketplace-install-0098FF)](https://marketplace.visualstudio.com/items?itemName=triplepai14.claude-state-sync)
-![Version](https://img.shields.io/badge/version-0.9.19-blue)
+![Version](https://img.shields.io/badge/version-0.9.20-blue)
 ![VS Code](https://img.shields.io/badge/VS%20Code-1.85+-007ACC)
 ![Storage](https://img.shields.io/badge/storage-your%20own%20Google%20Drive-4285F4?logo=googledrive&logoColor=white)
 ![Scope](https://img.shields.io/badge/OAuth%20scope-drive.file-34A853)
@@ -212,8 +212,12 @@ so nothing is deleted and `claude --resume` still shows one entry.
 - Transcripts are an internal Claude Code format that can change between
   releases.
 - Sessions are moved, not merged. Forks are kept side by side, never stitched.
-- A file deleted on another machine is re-pushed from here rather than deleted;
-  local files are never removed automatically.
+- A *file* deleted on another machine is re-pushed from here rather than
+  deleted; local files are never removed automatically. **Sessions are the
+  exception**: "Delete everywhere" marks the session deleted on Drive, so no
+  machine pushes its copy back, and each one is asked once whether to remove
+  its own — asked, not told, because nothing here deletes a conversation on a
+  machine whose owner did not say so.
 - Only open workspace folders sync per-project state. Global scopes always sync.
 - Transcripts contain your prompts, replies and file contents Claude read. They
   land in your Google Drive — treat that folder as sensitive.
