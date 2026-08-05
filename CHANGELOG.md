@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.9.19
+
+- **A transcript that was already damaged can be copied again.** The copy check
+  refused any result containing replacement characters, on the reasoning that
+  the rewrite must have produced them. Sometimes it had not: the chunk-decoding
+  bug fixed in an early version left U+FFFD inside real conversations, and
+  those characters are still in those files. Refusing to copy them made the
+  damage permanent — the conversation could never be moved anywhere, ever.
+- The check now compares against the source: only damage **the copy
+  introduced** fails it, and a copy that reproduces existing damage exactly is
+  correct, because that is what a faithful copy of a damaged file looks like.
+- What was already there is reported rather than hidden — the copy says how
+  many records carried damage in, so you learn the state of the conversation
+  instead of learning nothing.
+
 ## 0.9.18
 
 - **The updates banner names the project**: *1 session in acme/web from
