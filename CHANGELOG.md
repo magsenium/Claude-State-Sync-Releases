@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.10.4
+
+- **Handles a OneDrive account Microsoft has migrated.** Seen on a real
+  account: every call failed 503 with `itemDisabledDueToUserContentMigration`,
+  because Microsoft had moved the account's content and the `/me/drive` alias
+  still pointed at the old, disabled drive. The client now recognises that
+  answer, looks up the real drive by id (`/me/drives`) and re-addresses every
+  call to it — automatically, once, mid-flight.
+- That 503 is also **no longer blind-retried**: it is not a transient outage,
+  and backing off against a disabled drive wasted fifteen seconds per call on
+  an answer that could never change.
+- If the explicit drive still reports the migration, the error finally says
+  something a person can act on: sign in once at onedrive.live.com, which
+  completes the migration, then sync again.
+
 ## 0.10.3
 
 - **No more "Reading Google Drive…" over a OneDrive sync.** The progress label
