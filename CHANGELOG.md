@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.10.3
+
+- **No more "Reading Google Drive…" over a OneDrive sync.** The progress label
+  was hard-coded, and it was not alone: the delete dialogs, the fork prompts,
+  the "on Drive" session tag and the file counts all said Drive whichever
+  cloud was connected. Every string a person reads now names the provider it
+  is actually talking to, and the render check refuses a OneDrive panel that
+  still says "Drive" anywhere.
+- The delete-everywhere confirmation also caught up with 0.9.20: it promised
+  that other machines "will upload it again", which the tombstone has made
+  false — they will not, and each is asked once about its own copy.
+
 ## 0.10.2
 
 - **Switching provider is now one click, applied immediately.** The Sync
