@@ -1,5 +1,26 @@
 # Changelog
 
+## 0.10.0
+
+- **OneDrive can hold the sync instead of Google Drive.** The panel asks on
+  first run; `claudeStateSync.provider` records the answer, and each provider
+  keeps its own sign-in, so switching later costs nothing but a window reload.
+- The Microsoft side is the easier one to set up: one app registration, no API
+  to enable, no consent screen to publish, no 7-day testing trap — and **no
+  client secret at all**, because a desktop registration is a public client
+  protected by PKCE, exactly the mechanism already used for Google.
+- Scope parity: `Files.ReadWrite.AppFolder` sees one folder of its own under
+  `Apps/` and nothing else — the OneDrive analogue of `drive.file`.
+- Under the hood the engine now talks to a backend interface with two
+  implementations. OneDrive items cannot carry app metadata the way Google
+  files do, so every upload gets a tiny `.meta` companion holding the same
+  fields; listings fold them back in and hide them, and nothing above the
+  backend can tell the providers apart. One Microsoft-specific trap is handled:
+  their refresh tokens rotate on use, and the replacement is stored on every
+  refresh — miss that and the sign-in dies within days.
+- One machine syncs through one provider at a time; the two clouds are separate
+  stores, and state pushed to one is not in the other.
+
 ## 0.9.20
 
 **Fixes "delete everywhere" undoing itself. Upgrade every machine.**

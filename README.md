@@ -1,18 +1,18 @@
 # Claude State Sync — releases
 
 [![Marketplace](https://img.shields.io/badge/Marketplace-install-0098FF)](https://marketplace.visualstudio.com/items?itemName=triplepai14.claude-state-sync)
-![Version](https://img.shields.io/badge/version-0.9.20-blue)
+![Version](https://img.shields.io/badge/version-0.10.0-blue)
 ![VS Code](https://img.shields.io/badge/VS%20Code-1.85+-007ACC)
-![Storage](https://img.shields.io/badge/storage-your%20own%20Google%20Drive-4285F4?logo=googledrive&logoColor=white)
-![Scope](https://img.shields.io/badge/OAuth%20scope-drive.file-34A853)
+![Storage](https://img.shields.io/badge/storage-your%20own%20Google%20Drive%20or%20OneDrive-4285F4?logo=googledrive&logoColor=white)
+![Scope](https://img.shields.io/badge/OAuth%20scope-app--scoped%20files%20only-34A853)
 ![Servers](https://img.shields.io/badge/third--party%20servers-none-brightgreen)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 
 Keep Claude Code's working state — memory, skills, plans, `CLAUDE.md` and session
-transcripts — in step across machines, through **your own** Google Drive. No
-third-party server, and nothing syncs unless you ask it to. It also copies a
-conversation from one project into another, rewriting the paths recorded inside
-the transcript so it belongs there.
+transcripts — in step across machines, through **your own** Google Drive or
+OneDrive. No third-party server, and nothing syncs unless you ask it to. It also
+copies a conversation from one project into another, rewriting the paths
+recorded inside the transcript so it belongs there.
 
 Problems and requests: [open an issue](https://github.com/triplepai14/Claude-State-Sync-Releases/issues).
 
@@ -40,8 +40,15 @@ Never synced: `cache/`, `backups/`, `ide/`, `shell-snapshots/`, `session-env/`,
 
 # Setup
 
-Everything below is a **one-time job**, and only the Google side takes any
-effort. Budget five minutes.
+First pick where the state should live — the panel asks on first run, and
+`claudeStateSync.provider` records the choice:
+
+- **Google Drive** (the default): follow the walkthrough below.
+- **OneDrive**: skip to [OneDrive instead](#onedrive-instead) — it is shorter,
+  because Microsoft needs no API enablement, no consent-screen publishing and
+  no client secret.
+
+Either way it is a **one-time job**. Budget five minutes.
 
 ## Why you have to do this at all
 
@@ -136,6 +143,30 @@ account. Steps 1–4 are never repeated.
 The extension asks for `drive.file`, which can see **only files it created
 itself**. The rest of your Drive is invisible to it — not by policy, but because
 Google will not return those files to this client at all.
+
+## OneDrive instead
+
+Pick **OneDrive** in the panel (or set `claudeStateSync.provider` to
+`onedrive`), then register once with Microsoft:
+
+1. Go to <https://aka.ms/AppRegistrations> → **New registration**. Any name.
+   Under **Supported account types** choose the option ending in **"and
+   personal Microsoft accounts"** — that is what lets your own OneDrive sign
+   in.
+2. In the registration: **Authentication** → **Add a platform** → **Mobile and
+   desktop applications**, and add `http://localhost` and `http://127.0.0.1`
+   as custom redirect URIs.
+3. Copy the **Application (client) ID** from the Overview page — a GUID — and
+   paste it into the panel. That is the whole registration: a desktop app is a
+   *public client*, so **there is no secret**, and the sign-in is protected by
+   PKCE and a local redirect instead.
+4. Press **Sign in to OneDrive** and approve.
+
+The scope is `Files.ReadWrite.AppFolder`: the extension sees **one folder of
+its own** under `Apps/` in your OneDrive and nothing else, the OneDrive
+analogue of `drive.file`. Each provider keeps its own sign-in, so switching
+between them later loses nothing — but the two clouds are separate stores, and
+state pushed to one is not in the other.
 
 ---
 
