@@ -1,7 +1,7 @@
 # Claude State Sync — releases
 
 [![Marketplace](https://img.shields.io/badge/Marketplace-install-0098FF)](https://marketplace.visualstudio.com/items?itemName=triplepai14.claude-state-sync)
-![Version](https://img.shields.io/badge/version-0.10.5-blue)
+![Version](https://img.shields.io/badge/version-0.10.6-blue)
 ![VS Code](https://img.shields.io/badge/VS%20Code-1.85+-007ACC)
 ![Storage](https://img.shields.io/badge/storage-your%20own%20Google%20Drive%20or%20OneDrive-4285F4?logo=googledrive&logoColor=white)
 ![Scope](https://img.shields.io/badge/OAuth%20scope-app--scoped%20files%20only-34A853)
@@ -228,8 +228,9 @@ copy against the file's own — so the tag costs nothing to show.
 
 **Conflicts:** files that changed on both sides are merged with `git merge-file`.
 Overlapping edits leave your local file untouched and raise a conflict in the
-panel, with a local ↔ remote diff and *Keep Local* / *Take Remote* / *Open
-Merged*.
+panel — click **resolve** and choose: compare the two side by side, keep this
+machine's copy, take the one from the cloud, or edit a merged copy by hand when
+one could be built. Nothing is written until you pick.
 
 **Sessions continued on two machines** are compared by content. If one is simply
 further along it wins. If they genuinely forked, neither copy contains the other

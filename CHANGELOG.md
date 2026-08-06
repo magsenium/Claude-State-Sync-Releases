@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.10.6
+
+- **Resolving a conflict is now the same one-click choice as settling a fork.**
+  Pressing *resolve* opened the diff and then put the options in a corner
+  notification, which slides away on its own — so what was left on screen was
+  two files and no visible way to act on them.
+- The choice is a dialog now, and **comparing is one of its answers** rather
+  than something that happens first: *Compare them* opens the diff and brings
+  the same question back, so looking never costs you the controls. It names the
+  file, both sizes and which cloud the other copy came from, and says plainly
+  that your local file is untouched until you pick.
+- *Edit a merged copy* appears only when there is a merged file to edit — with
+  no common ancestor, or on binary content, no merge was attempted and offering
+  one was a dead end.
+- The conflict row carries the same red control a forked session does, and the
+  section shows a count.
+
 ## 0.10.5
 
 - **Sign-in now offers the account chooser.** With more than one Microsoft
