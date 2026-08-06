@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.10.5
+
+- **Sign-in now offers the account chooser.** With more than one Microsoft
+  account signed in to the browser, OneDrive sign-in silently took whichever
+  one was already there — and *Switch account* switched to the same account it
+  had just left. Both providers now ask which account to use.
+- Google keeps `consent` alongside it, which is what guarantees a refresh
+  token, so nothing about existing sign-ins changes.
+
 ## 0.10.4
 
 - **Handles a OneDrive account Microsoft has migrated.** Seen on a real
