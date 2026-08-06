@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.10.1
+
+- **The provider can be changed from the connected panel too.** The choice was
+  only offered on the first-run screen, so anyone already signed in had to know
+  the setting existed. The provider's name in the panel is now the control:
+  click *Google Drive* (or *OneDrive*) to pick the other one. Each keeps its
+  own sign-in, so switching costs a window reload and nothing else.
+
 ## 0.10.0
 
 - **OneDrive can hold the sync instead of Google Drive.** The panel asks on
