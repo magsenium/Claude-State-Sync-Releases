@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.10.2
+
+- **Switching provider is now one click, applied immediately.** The Sync
+  through pills — now on every setup screen — and the provider name on the
+  connected panel swap the whole stack in place: auth, backend, bookkeeping,
+  engine. No window reload, no toast to notice; the panel simply repaints as
+  the other provider, showing its own sign-in or its own setup screen.
+- Each provider keeps **separate bookkeeping** (`state.json` for Google,
+  `state.onedrive.json` for OneDrive, and their own merge bases and conflict
+  folders). Watermarks and remote listings describe one store; carrying
+  Google's numbers into OneDrive would have tagged sessions with sync state
+  that belonged to the other cloud.
+- Editing `claudeStateSync.provider` straight in settings.json now applies the
+  same way, and switching is refused only while a sync is mid-flight.
+
 ## 0.10.1
 
 - **The provider can be changed from the connected panel too.** The choice was

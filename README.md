@@ -1,7 +1,7 @@
 # Claude State Sync — releases
 
 [![Marketplace](https://img.shields.io/badge/Marketplace-install-0098FF)](https://marketplace.visualstudio.com/items?itemName=triplepai14.claude-state-sync)
-![Version](https://img.shields.io/badge/version-0.10.1-blue)
+![Version](https://img.shields.io/badge/version-0.10.2-blue)
 ![VS Code](https://img.shields.io/badge/VS%20Code-1.85+-007ACC)
 ![Storage](https://img.shields.io/badge/storage-your%20own%20Google%20Drive%20or%20OneDrive-4285F4?logo=googledrive&logoColor=white)
 ![Scope](https://img.shields.io/badge/OAuth%20scope-app--scoped%20files%20only-34A853)
@@ -164,8 +164,9 @@ Pick **OneDrive** in the panel (or set `claudeStateSync.provider` to
 
 The scope is `Files.ReadWrite.AppFolder`: the extension sees **one folder of
 its own** under `Apps/` in your OneDrive and nothing else, the OneDrive
-analogue of `drive.file`. Each provider keeps its own sign-in, so switching
-between them later loses nothing — but the two clouds are separate stores, and
+analogue of `drive.file`. Switching between them is one click in the
+panel and applies immediately — each provider keeps its own sign-in and its
+own bookkeeping, so nothing is lost either way — but the two clouds are separate stores, and
 state pushed to one is not in the other.
 
 ---
