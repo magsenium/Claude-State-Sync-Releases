@@ -1,7 +1,7 @@
 # Claude State Sync — releases
 
 [![Marketplace](https://img.shields.io/badge/Marketplace-install-0098FF)](https://marketplace.visualstudio.com/items?itemName=triplepai14.claude-state-sync)
-![Version](https://img.shields.io/badge/version-0.10.6-blue)
+![Version](https://img.shields.io/badge/version-0.10.7-blue)
 ![VS Code](https://img.shields.io/badge/VS%20Code-1.85+-007ACC)
 ![Storage](https://img.shields.io/badge/storage-your%20own%20Google%20Drive%20or%20OneDrive-4285F4?logo=googledrive&logoColor=white)
 ![Scope](https://img.shields.io/badge/OAuth%20scope-app--scoped%20files%20only-34A853)
@@ -190,7 +190,9 @@ changed since this machine last looked, using Drive's own modified times and
 the pushing machine's name recorded on every upload, so your own pushes are
 never echoed back and a skewed clock cannot hide anything. It runs when the
 panel opens and every few minutes while it stays open; nothing is downloaded
-until you pull. `claudeStateSync.remoteCheck.minutes` sets the pace (0 turns it
+until you pull. If the push is for a project this window has not got open,
+**pull it here** adopts it — say where it lives on this machine and it syncs
+from then on, until *stop syncing this one* on its card. `claudeStateSync.remoteCheck.minutes` sets the pace (0 turns it
 off).
 
 **Handing a conversation to another machine:** press ⟳ before you leave machine

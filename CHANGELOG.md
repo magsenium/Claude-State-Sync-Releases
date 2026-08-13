@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.10.7
+
+- **A project this window has not got open can now be pulled anyway.** The
+  banner used to say *open that project to sync it*, which is an instruction
+  rather than a button. It offers **pull it here**: pick where that project
+  lives on this machine, and it syncs from then on, with every sync, until you
+  press *stop syncing this one*.
+- That fills a hole that was there from the start — the bookkeeping could
+  *stop* syncing a project it did not have open, but nothing could ever start
+  one: `linkProject` existed and no code path called it.
+- Adopting asks for the folder rather than guessing it. Every path recorded
+  inside a transcript is rewritten to that folder on the way down, so a guess
+  would rewrite a conversation to point somewhere it does not live.
+
 ## 0.10.6
 
 - **Resolving a conflict is now the same one-click choice as settling a fork.**
