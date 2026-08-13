@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.10.8
+
+- **"Pull it here" finds the project itself.** It opened a folder browser
+  pointing at whatever was already open, which is the one folder it certainly
+  was not looking for. A project key *is* its normalised git remote, so a
+  folder on this machine whose remote matches is not a guess but the same
+  repository — and Claude Code records the path of every project it has been
+  run in, which makes those folders findable without asking.
+- Asking is now the fallback, and when it does ask it starts **beside** what is
+  open rather than inside it: a sibling checkout is the common case.
+- Found while testing it against the real machine rather than trusting it:
+  the first version compared the raw remote (`github.com/you/app`) against the
+  key (`github.com_you_app`), which could never match, so every adoption would
+  have fallen through to the browser. Both sides go through the same sanitiser
+  now, and a test pins that they differ.
+
 ## 0.10.7
 
 - **A project this window has not got open can now be pulled anyway.** The
