@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.10.15
+
+- **The per-project checkbox is gone again** — a project on this machine
+  always syncs; choosing what moves is the job of the checkboxes on the
+  session rows beneath it. What remains at project level: `sync here` on an
+  `on Drive` row to start syncing a project that is not on this machine yet,
+  and `stop syncing this one` riding next to the message on a link that
+  cannot sync — the row survives either way.
+
 ## 0.10.14
 
 - **Whether a project syncs here is now a checkbox on its row, and stopping is
