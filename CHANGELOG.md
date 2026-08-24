@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.10.20
+
+- **Two headed sections instead of one list with a rule**: `Project` (plural
+  only with several folders open) holds what this window is working in, and
+  `Other Projects` — with its own count and the `show all` control — holds
+  everything else. The second section disappears when there is nothing in it.
+
 ## 0.10.19
 
 - **A dividing rule between this window’s projects and the rest** of the
