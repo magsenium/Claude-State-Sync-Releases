@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.10.9
+
+- **A session that cannot be pulled now says so.** Session-level failures were
+  reported without naming their project, and the panel attaches an error to a
+  project card by looking for the key in the text — so a transcript that
+  refused to come down left its row reading `on Drive` for ever with nothing
+  anywhere to explain it.
+- **A missing source path no longer refuses the download.** Uploads record
+  where the pushing machine kept the project, and the pull would not proceed
+  without it. But a transcript states its own working directory on every line,
+  so it is read from the file instead; and if even that is absent the
+  conversation is taken unrewritten rather than abandoned, because the paths it
+  carries are the only ones it ever had.
+
 ## 0.10.8
 
 - **"Pull it here" finds the project itself.** It opened a folder browser
