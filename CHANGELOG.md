@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.10.13
+
+- **`show all` / `fold others` on the Projects header** — one click expands
+  every folded card to manage everything from this page, one click folds all
+  but the open ones back down.
+- **Copying a session now asks what to do with the paths inside it**, with the
+  consequence written on each choice: rewrite them so Claude treats the copy
+  as native to the new project (recommended), or keep a byte-for-byte copy
+  whose paths still point at the original folder — an archive, not a
+  continuation.
+- **The done message says to reload the window that has the target project
+  open** (with a reload button for this one): the Claude extension reads its
+  session list on startup, so until a reload the copy looks like it failed.
+
 ## 0.10.12
 
 - **A link that cannot sync now says so.** A project adopted with the wrong
