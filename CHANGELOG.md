@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.10.16
+
+- **Clearer words on the project rows.** The green badge on the project open
+  in this window now reads `this project` instead of `open here`, and the
+  action on an `on Drive` row reads `start syncing` instead of `sync here` —
+  each project syncs into its own folder on this machine; the list shows them
+  all in one place purely for convenience, and the old wording suggested the
+  files would land in the open project.
+
 ## 0.10.15
 
 - **The per-project checkbox is gone again** — a project on this machine
