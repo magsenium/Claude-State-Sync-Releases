@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.10.18
+
+- **A project synced through another window now renders like its own window
+  would.** Its folder is located by git remote and the card reads the local
+  transcripts — real titles, sizes and true `synced`/`not synced` tags —
+  instead of listing everything as `on Drive` with bare ids. Only a project
+  genuinely absent from this machine falls back to the listing metadata.
+- **The project-row pills are gone.** `synced only`, `on Drive`, `not
+  syncing`, `via origin` and `by name` cluttered every row; what they said is
+  visible on the session rows. A row now carries at most the green `this
+  project` badge or the `start syncing` action.
+
 ## 0.10.17
 
 - **An unsynced project’s card now lists its sessions, each tagged `on
