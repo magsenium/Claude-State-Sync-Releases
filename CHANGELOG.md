@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.10.12
+
+- **A link that cannot sync now says so.** A project adopted with the wrong
+  folder — or whose folder has since disappeared — used to either vanish from
+  the panel or sit there looking healthy while syncing nowhere. Its card now
+  reads `not syncing` with the reason spelled out ("no folder on this machine
+  matches this project" / "the linked folder is gone") and offers the unlink,
+  the engine skips it, and picking a folder that is really a different project
+  is refused at link time instead of being stored.
+
 ## 0.10.11
 
 - **The open-here badge and the folding keyed on the wrong flag.** 0.10.10
