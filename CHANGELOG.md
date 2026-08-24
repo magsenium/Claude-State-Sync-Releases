@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.10.10
+
+- **A session copied to a second project now reaches the other machine while
+  the original is still open.** The do-not-touch-a-live-session guard matched
+  by session id across the whole machine, and a copy keeps its id — so as long
+  as the original conversation was open anywhere, the copy in the new project
+  was silently skipped on every sync, though writing it would have touched
+  nothing the running window holds. The guard now fires only when the file it
+  would actually replace exists.
+- **The Projects list says which project is open in this window** — a green
+  `open here` on the one Claude can start sessions in, `synced only` on the
+  adopted ones — and the adopted ones fold to a single line so they do not
+  bury it. The caret unfolds any of them; open projects lead the list.
+
 ## 0.10.9
 
 - **A session that cannot be pulled now says so.** Session-level failures were
