@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.10.17
+
+- **An unsynced project’s card now lists its sessions, each tagged `on
+  Drive`,** instead of a bare project-level pill: id, size, upload time and —
+  for sessions pushed from 0.10.17 on — the session’s title, which now rides
+  in the upload metadata (clipped to fit the store’s limits). Drawn entirely
+  from the listing; no transcript is downloaded. Sessions already on Drive
+  show their title after the machine that holds them syncs once more.
+
 ## 0.10.16
 
 - **Clearer words on the project rows.** The green badge on the project open
