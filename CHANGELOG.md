@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.10.19
+
+- **A dividing rule between this window’s projects and the rest** of the
+  Projects list — the two groups were hard to tell apart at a glance. Drawn
+  only when both groups exist.
+
 ## 0.10.18
 
 - **A project synced through another window now renders like its own window
