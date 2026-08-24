@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.10.11
+
+- **The open-here badge and the folding keyed on the wrong flag.** 0.10.10
+  treated `linked` (adopted from Drive) as "not open here" — but a project
+  pulled here and then opened is both, so the very project being worked in
+  could show `synced only`, folded, while everything else stood expanded.
+  Open-ness now comes from the window's workspace folders: the open project
+  is the one expanded and marked, and every other project folds to one line.
+
 ## 0.10.10
 
 - **A session copied to a second project now reaches the other machine while
