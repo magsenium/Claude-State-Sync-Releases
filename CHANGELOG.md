@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.10.14
+
+- **Whether a project syncs here is now a checkbox on its row, and stopping is
+  reversible.** `stop syncing this one` removed the card — and with it the
+  only way to start again. Every project the store holds is now listed: open
+  ones (box ticked and locked), synced ones (untick to stop — nothing is
+  deleted, the row stays), and `on Drive` ones with an empty box that starts
+  the sync when ticked, locating the folder by git remote and refusing a
+  mismatched pick. The store list is refreshed on every sync, so a project
+  unticked by accident is back one tick later.
+
 ## 0.10.13
 
 - **`show all` / `fold others` on the Projects header** — one click expands
