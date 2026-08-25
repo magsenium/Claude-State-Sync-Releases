@@ -1,5 +1,196 @@
 # Changelog
 
+## 0.14.0
+
+- **A way through for OneDrive accounts whose app folder Microsoft refuses.**
+  Personal accounts moved to the newer storage backend answer the app-folder
+  endpoint with 400 or `serviceReadOnly` however healthy the account is, which
+  leaves those accounts unable to sync at all. The failure now carries a `use
+  an ordinary folder` button: the store moves to a plain `ClaudeStateSync`
+  folder in the drive, and sync works.
+- **It is a choice, not a default.** That mode needs `Files.ReadWrite`, which
+  can see the whole drive, so it is spelled out before it happens, needs a
+  fresh sign-in, and leaves `claudeStateSync.onedrive.folderMode` on
+  `appFolder` — the narrow permission — for everyone else. Switching back is
+  the same setting.
+- A sign-in is now remembered as belonging to the mode it was granted under,
+  so changing the setting asks for a new sign-in instead of failing somewhere
+  obscure.
+- The README leads with the three stores — Drive, OneDrive, a git repository
+  of your own — and a picture of the screen where you pick one.
+
+## 0.13.9
+
+- **The read-only OneDrive message names the cause you can act on.** An
+  account over its storage limit is put in read-only by Microsoft and stays
+  there until space is freed — that now leads the message, ahead of migration
+  and maintenance, along with the reminder that the recycle bin still counts
+  towards the limit and that the other two providers are separate stores that
+  work meanwhile.
+
+## 0.13.8
+
+- **A OneDrive that Microsoft has put in read-only mode now says so.** The
+  panel showed the raw `403 accessDenied / Database Is Read Only` with a
+  request id, which reads like a permissions problem or worse. It is neither:
+  Microsoft does this during account maintenance and migration, it refuses
+  reads as well as writes, and it lifts on its own — so that is what the
+  message says now, along with the fact that nothing was lost.
+- Every OneDrive failure — listings, metadata writes, uploads, chunk uploads —
+  goes through the same reader, so a condition like this reads the same
+  whichever call met it first.
+
+## 0.13.7
+
+- **Fixed OneDrive asking for an Application (client) ID right after a
+  successful sign-in.** The Microsoft side answered "do I have a
+  registration?" from secret storage alone, so the one built into the
+  extension — the one the sign-in had just used — did not count, and the panel
+  showed the lost-client screen over a working sign-in. Nothing was wrong with
+  the sign-in; only the question was.
+
+## 0.13.6
+
+- **No more `switch account` on a git store.** There is no account to switch
+  between — changing repository is editing the URL — and pressing it dropped
+  the clone only to clone the same repository again. The account row now shows
+  one `Disconnect this repository` there, which forgets the local clone and
+  returns to Connect with the URL still in the box. Google Drive and OneDrive
+  keep both controls unchanged.
+
+## 0.13.5
+
+- **Other Projects lists what this machine holds, before any sync.** The
+  section was built from the store’s listing alone, so a fresh install showed
+  nothing until a cycle had run — on a machine full of conversations it could
+  read as though there were none. Every project Claude Code has transcripts
+  for is now listed straight away, with its sessions, and `start syncing`
+  beside it.
+
+## 0.13.4
+
+- **Fixed `EPERM, Permission denied` when connecting a git repository on
+  Windows.** Git marks every object it writes read-only, and Node’s recursive
+  delete does not clear that — so clearing the way for a fresh clone failed on
+  the store it was trying to replace. It now clears the attribute and retries,
+  skips the delete entirely when the directory is empty (which is what a
+  half-finished clone leaves), and says which path is stuck if it still cannot
+  be moved.
+- Changing the repository URL no longer deletes the clone at all: the remote is
+  re-pointed and the tree reset, which lands on the new store’s content
+  without a delete to fail.
+
+## 0.13.3
+
+- **The sign-in button says `Sign in to Google Drive` again**, whichever
+  registration is in play. `Sign in with the built-in client` was our
+  vocabulary, not the user’s — most people signing in here have never met an
+  OAuth client. With one of your own saved it still asks before switching, and
+  a line under the button says so.
+
+## 0.13.2
+
+- **The four-point pitch is gone from the Git repo screen.** It pushed the URL
+  box off the first screenful on the one setup that is a single box; the other
+  providers keep it, where there is a walkthrough to introduce.
+
+## 0.13.1
+
+- **The repository URL is a box at the top of the git screen**, not something a
+  button has to fetch: it is the whole setup, so it sits where the cursor
+  lands. A URL already saved comes back in it, Enter submits, and one press
+  saves and connects.
+
+## 0.13.0
+
+- **Sync through a git repository.** A third choice beside Google Drive and
+  OneDrive, and the one with nothing to register: paste the URL of an empty
+  private repository and that is the setup. Each sync fetches it, writes what
+  changed, commits and pushes — using the git already on this machine, so
+  access is your credential helper or SSH key and the extension holds no token
+  of its own.
+- Two machines syncing at once: the push that loses is dropped and retried next
+  sync rather than forced, so nothing is overwritten and nothing is lost.
+- Worth knowing: a repository keeps every version for ever, and transcripts are
+  the bulk of what syncs — keep one repository for this alone, and remake it if
+  it grows uncomfortable. Nothing here needs the history.
+
+## 0.12.2
+
+- **Switching clients is one decision with two directions, not a button.** The
+  separate `use the built-in client instead` control is gone; with a client of
+  your own saved, the main button reads `Sign in with the built-in client` and
+  asks before it switches — the same question the form asks when you save a
+  client of your own over the shipped one. Whichever you started with,
+  changing it is the same change and gets the same warning.
+- That warning no longer waits for a live sign-in: a signed-out machine still
+  has a store that would go out of sight.
+- **Identical on OneDrive**, which now has both halves too.
+
+## 0.12.1
+
+- **The client you pasted is shown back to you.** The boxes come up filled
+  with it instead of blank, so the form edits what is in use rather than
+  hiding it. The secret stays in secret storage — its box reads `saved — leave
+  blank to keep it`, and leaving it blank does exactly that.
+- **Both sign-in paths are named.** The form’s button now reads `Save and sign
+  in with my client`, against `Sign in to Google Drive` above it, so it is
+  clear which registration each one uses.
+- **A way back to the shipped client**: `use the built-in client instead`
+  appears once you have one of your own, and asks before switching, since it
+  is a client swap like any other.
+
+## 0.12.0
+
+- **OneDrive now works like Google Drive: pick it and press Sign in.** The
+  build carries a Microsoft registration of its own, so the app registration
+  walkthrough is optional there too. A Microsoft desktop registration is a
+  *public* client — there is no secret involved at all, only an application id.
+- **Registering with Microsoft yourself still works** and still wins over the
+  shipped one: press `paste one` on the sign-in screen. Useful where an
+  organisation only allows apps it registered itself.
+- The sign-in note says what a work or school account may run into: an
+  administrator may have to approve the app first. Personal accounts never do.
+
+## 0.11.2
+
+- **`paste one` on the sign-in screen brings back the bring-your-own-client
+  option.** It lived on the setup walkthrough, which a build carrying its own
+  client never shows — so 0.11.0 left `Sign in` as the only thing on the page.
+  The link opens the same two boxes, with a word on what changes: a pasted
+  client takes over from the built-in one with no setting to change, and each
+  client keeps its own store.
+
+## 0.11.1
+
+- **A project whose git remote was renamed follows its folder** instead of
+  stranding the old name. Project identity comes from the remote, so renaming a
+  GitHub account renamed every project at once: the old keys sat in the panel
+  saying `no folder on this machine matches this project`, while the same
+  folders reappeared as strangers with no history. The link now moves to the
+  new key and carries everything with it — sync counters, excluded sessions,
+  parked forks and, most importantly, the watermarks that say what the cloud
+  already holds, so nothing is re-uploaded.
+
+## 0.11.0
+
+- **No Google Cloud console visit any more: install, press Sign in, done.** The
+  published build carries its own Google registration, so the four setup steps
+  that stood between a new user and their first sync are gone. Nothing else
+  changes about where data lives — the files still go to a folder in your own
+  Drive, under the same `drive.file` permission, with no server in between.
+- **Registering a client of your own is still supported** and takes precedence
+  over the shipped one: turn off `claudeStateSync.oauth.useBuiltin` and paste
+  it in. For an employer that blocks unapproved apps, or to keep the traffic on
+  your own quota.
+- **Switching between the shipped client and one of your own is spelled out
+  before it happens** — a modal when you save a different client, a warning when
+  `oauth.useBuiltin` is toggled while signed in, and a standing note on the
+  credentials form. Each client is a separate application to the cloud, so the
+  other one's uploads go invisible and a second folder appears; nothing is
+  deleted, and switching back brings the old store into view.
+- OneDrive is unchanged: Microsoft registrations stay yours to create.
+
 ## 0.10.32
 
 - **Every issue from a run reaches the Issues tab**, not just the first one:
