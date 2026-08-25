@@ -1,5 +1,73 @@
 # Changelog
 
+## 0.10.30
+
+- **The header sync control is now the words `sync this project`** rather than
+  an icon: every glyph tried for it read as "reload", and its reach — this
+  project, not every project — is the thing worth saying. It reads
+  `syncing…` while a run is going, and stays visible but disabled, with the
+  reason, before the setup is finished.
+
+## 0.10.29
+
+- **The sync button is now 🔄** — the two-arrow cycle emoji, which reads as
+  an exchange rather than a reload. It still spins while a sync runs.
+
+## 0.10.28
+
+- **Each sync button now has its own scope.** ↻ syncs the project open in
+  this window plus the shared scopes (CLAUDE.md, skills, plans, global
+  memory, settings); `sync now` on a project row syncs that project alone and
+  leaves the shared scopes untouched; a new `sync all` on the Other Projects
+  header runs the lot. A single-project run no longer rewrites the shared
+  scopes’ counters with numbers it never gathered.
+
+## 0.10.27
+
+- **`sync started` names the projects instead of `(panel)`** — the projects
+  the run will cover, or just the one project when its row’s `sync now`
+  asked.
+
+## 0.10.26
+
+- **`up to date` names what it checked too** — `up to date —
+  github.com_you_app, shared +2 more` — so a quiet sync still says which
+  projects it covered.
+
+## 0.10.25
+
+- **Activity names the projects.** A sync summary now ends with what it
+  touched — `2 session(s) down — github.com_you_app`, `shared` for the
+  global scopes, capped at three names — and pressing `sync now` on a project
+  row stamps that project into its `sync started` entry.
+
+## 0.10.24
+
+- **Every user action lands in Activity, not only in the log**: pressing sync
+  writes `sync started` and every run reports back (`up to date` included),
+  ticking a session on or off is recorded, and resolving a conflict says
+  which side was kept.
+- **A `clear` button on the Activity header** empties the history; it shows
+  only while there is something to clear.
+
+## 0.10.23
+
+- **An adopted project row keeps its button.** `start syncing` used to vanish
+  the moment it worked; the row now shows `sync now` instead once the project
+  syncs here, so every Other Projects row carries its state and an action.
+
+## 0.10.22
+
+- **Activity history survives reloads.** It now lives in a file shared by
+  every window, entries from concurrent windows merge instead of overwriting
+  each other, and the 50-entry cap still holds.
+
+## 0.10.21
+
+- **The Other Projects section folds whole**, and starts folded: heading and
+  count only, not even the names, until its caret opens it. Unfolded, each
+  card still folds on its own and `show all` still opens every one.
+
 ## 0.10.20
 
 - **Two headed sections instead of one list with a rule**: `Project` (plural
