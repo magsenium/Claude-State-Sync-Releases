@@ -14,9 +14,9 @@ OneDrive. No third-party server, and nothing syncs unless you ask it to. It also
 copies a conversation from one project into another, rewriting the paths
 recorded inside the transcript so it belongs there.
 
-Problems and requests: [open an issue](https://github.com/triplepai14/Claude-State-Sync-Releases/issues).
+Problems and requests: [open an issue](https://github.com/magsenium/Claude-State-Sync-Releases/issues).
 
-![The Claude State Sync panel: account, project, session list with checkboxes, shared scopes and activity](https://github.com/triplepai14/Claude-State-Sync-Releases/raw/main/media/screenshot-panel.png)
+![The Claude State Sync panel: account, project, session list with checkboxes, shared scopes and activity](https://github.com/magsenium/Claude-State-Sync-Releases/raw/main/media/screenshot-panel.png)
 
 ## What gets synced
 
