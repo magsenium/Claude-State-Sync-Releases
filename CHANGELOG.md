@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.10.31
+
+- **The header log icon is gone.** Activity now carries what happened, and the
+  raw log is still one click away where it is actually wanted — `details` on
+  the sync-issue banner, the button on a failure screen, `Claude State Sync:
+  Show Log` in the command palette, and the Output view.
+
 ## 0.10.30
 
 - **The header sync control is now the words `sync this project`** rather than
