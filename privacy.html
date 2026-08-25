@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy — Claude State Sync</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --ink: #1a1a1a;
+    --dim: #5b5b5b;
+    --rule: #e2e2e2;
+    --bg: #ffffff;
+    --link: #0b62d0;
+    --note-bg: #f4f6f8;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ink: #e6e6e6;
+      --dim: #a3a3a3;
+      --rule: #2e2e2e;
+      --bg: #161616;
+      --link: #6cb0ff;
+      --note-bg: #1e1e1e;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0 auto;
+    padding: 48px 20px 96px;
+    max-width: 46rem;
+    background: var(--bg);
+    color: var(--ink);
+    font: 16px/1.65 -apple-system, "Segoe UI", Roboto, system-ui, sans-serif;
+  }
+  header { border-bottom: 1px solid var(--rule); padding-bottom: 20px; margin-bottom: 32px; }
+  h1 { margin: 0 0 6px; font-size: 1.9rem; line-height: 1.2; }
+  h2 { margin: 40px 0 10px; font-size: 1.15rem; }
+  .sub, .updated { color: var(--dim); font-size: .92rem; margin: 0; }
+  p, li { color: var(--ink); }
+  ul { padding-left: 1.25rem; }
+  li { margin: 6px 0; }
+  a { color: var(--link); }
+  code {
+    background: var(--note-bg);
+    padding: 1px 5px;
+    border-radius: 4px;
+    font: .88em ui-monospace, "Cascadia Mono", Consolas, monospace;
+  }
+  .lead { font-size: 1.05rem; }
+  .note {
+    background: var(--note-bg);
+    border-left: 3px solid var(--rule);
+    padding: 14px 16px;
+    border-radius: 4px;
+    margin: 24px 0;
+  }
+  .note p { margin: 0; }
+  footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--rule); color: var(--dim); font-size: .9rem; }
+  table { border-collapse: collapse; width: 100%; margin: 16px 0; font-size: .95rem; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  th { color: var(--dim); font-weight: 600; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Privacy Policy</h1>
+  <p class="sub">Claude State Sync — a Visual Studio Code extension</p>
+</header>
+
+<p class="lead">
+  Claude State Sync copies Claude Code's state between your own computers using
+  <strong>your own</strong> Google Drive or Microsoft OneDrive account. There is no
+  server in the middle. The developer of this extension operates no backend,
+  receives no copy of your files, and cannot read the data you sync.
+</p>
+
+<div class="note">
+  <p>
+    <strong>In one line:</strong> your files travel from your computer to your own
+    cloud storage and back. Nothing is sent anywhere else, and nothing is collected.
+  </p>
+</div>
+
+<h2>Who is responsible</h2>
+<p>
+  This extension is published on the Visual Studio Marketplace by
+  <strong>triplepai14</strong> (Pawit Sangrassamee) as an individual, non-commercial
+  project. Contact details are at the end of this page.
+</p>
+
+<h2>What the extension reads on your computer</h2>
+<p>
+  Only what you switch on. Each of these is a separate toggle in the extension's
+  settings, and each maps to a location Claude Code already uses on your machine:
+</p>
+<ul>
+  <li><code>CLAUDE.md</code>, plans, skills, agents, commands and settings from <code>~/.claude</code></li>
+  <li>Per-project memory files</li>
+  <li>Claude Code session transcripts (the record of your conversations)</li>
+</ul>
+<p>
+  Session transcripts can contain anything you typed into Claude Code, including
+  code and file paths. They are treated as your private data throughout: they are
+  compressed and uploaded to your own cloud storage, and nowhere else.
+</p>
+
+<h2>Where the data goes</h2>
+<table>
+  <tr>
+    <th>Provider</th>
+    <th>Location</th>
+    <th>Permission requested</th>
+  </tr>
+  <tr>
+    <td>Google Drive</td>
+    <td>A folder in your Drive, named <code>ClaudeStateSync</code> by default</td>
+    <td><code>drive.file</code></td>
+  </tr>
+  <tr>
+    <td>Microsoft OneDrive</td>
+    <td>This app's own folder in your OneDrive</td>
+    <td><code>Files.ReadWrite.AppFolder</code>, <code>User.Read</code></td>
+  </tr>
+</table>
+<p>
+  Both permissions are the narrowest ones the providers offer for this purpose.
+  <code>drive.file</code> grants access <em>only</em> to files this application itself
+  creates — the extension cannot see, list or read any other file in your Google
+  Drive. <code>Files.ReadWrite.AppFolder</code> confines the extension to a single
+  application folder in OneDrive. <code>User.Read</code> is used solely to display
+  which account you are signed in as, in the extension's own panel.
+</p>
+
+<h2>What the developer collects</h2>
+<p><strong>Nothing.</strong> Specifically:</p>
+<ul>
+  <li>No analytics, telemetry, crash reporting or usage statistics.</li>
+  <li>No account names, email addresses, file names or file contents are transmitted to the developer.</li>
+  <li>No server is operated by the developer; the extension talks directly to Google or Microsoft from your computer.</li>
+  <li>The extension's diagnostic log stays on your machine, in the Output panel of your editor.</li>
+</ul>
+
+<h2>Sign-in and tokens</h2>
+<p>
+  Signing in uses the provider's standard OAuth flow in your browser. The resulting
+  access and refresh tokens are stored in Visual Studio Code's encrypted secret
+  storage on that computer and are never written to a synced file, a log, or any
+  location the developer can reach.
+</p>
+
+<h2>Google API Services — Limited Use</h2>
+<p>
+  Claude State Sync's use and transfer of information received from Google APIs
+  adheres to the
+  <a href="https://developers.google.com/terms/api-services-user-data-policy" rel="noopener">Google API Services User Data Policy</a>,
+  including the Limited Use requirements. Data obtained through Google APIs is used
+  only to provide the syncing feature you asked for; it is not transferred to any
+  third party, is not used for advertising, and is not read by humans.
+</p>
+
+<h2>Your control</h2>
+<ul>
+  <li>Choose what is synced — every category has its own toggle, and individual sessions can be excluded.</li>
+  <li>Delete the storage folder from your Drive or OneDrive at any time; the extension will simply find nothing there.</li>
+  <li>Revoke access at any time:
+    <a href="https://myaccount.google.com/permissions" rel="noopener">Google account permissions</a>
+    or
+    <a href="https://account.live.com/consent/Manage" rel="noopener">Microsoft account permissions</a>.
+  </li>
+  <li>Uninstall the extension; nothing of yours is left behind on any server, because none was used.</li>
+</ul>
+
+<h2>Children</h2>
+<p>
+  This is a developer tool and is not directed at children under 13 (or the minimum
+  age in your jurisdiction).
+</p>
+
+<h2>Changes</h2>
+<p>
+  If this policy changes, the revised version will be published at this address with
+  a new date below. Material changes will also be noted in the extension's changelog.
+</p>
+
+<h2>Contact</h2>
+<p>
+  Questions or concerns:
+  <a href="https://github.com/triplepai14/Claude-State-Sync-Releases/issues" rel="noopener">open an issue</a>
+  on the project's public repository, or write to the support address shown on the
+  Google consent screen when you sign in.
+</p>
+
+<footer>
+  <p class="updated">Last updated: 25 August 2026 · <a href="./">Claude State Sync</a> · <a href="terms.html">Terms of Service</a></p>
+</footer>
+
+</body>
+</html>

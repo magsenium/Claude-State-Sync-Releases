@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Terms of Service — Claude State Sync</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --ink: #1a1a1a;
+    --dim: #5b5b5b;
+    --rule: #e2e2e2;
+    --bg: #ffffff;
+    --link: #0b62d0;
+    --note-bg: #f4f6f8;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ink: #e6e6e6;
+      --dim: #a3a3a3;
+      --rule: #2e2e2e;
+      --bg: #161616;
+      --link: #6cb0ff;
+      --note-bg: #1e1e1e;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0 auto;
+    padding: 48px 20px 96px;
+    max-width: 46rem;
+    background: var(--bg);
+    color: var(--ink);
+    font: 16px/1.65 -apple-system, "Segoe UI", Roboto, system-ui, sans-serif;
+  }
+  header { border-bottom: 1px solid var(--rule); padding-bottom: 20px; margin-bottom: 32px; }
+  h1 { margin: 0 0 6px; font-size: 1.9rem; line-height: 1.2; }
+  h2 { margin: 40px 0 10px; font-size: 1.15rem; }
+  .sub, .updated { color: var(--dim); font-size: .92rem; margin: 0; }
+  ul { padding-left: 1.25rem; }
+  li { margin: 6px 0; }
+  a { color: var(--link); }
+  code {
+    background: var(--note-bg);
+    padding: 1px 5px;
+    border-radius: 4px;
+    font: .88em ui-monospace, "Cascadia Mono", Consolas, monospace;
+  }
+  .lead { font-size: 1.05rem; }
+  .note {
+    background: var(--note-bg);
+    border-left: 3px solid var(--rule);
+    padding: 14px 16px;
+    border-radius: 4px;
+    margin: 24px 0;
+  }
+  .note p { margin: 0; }
+  footer { margin-top: 56px; padding-top: 20px; border-top: 1px solid var(--rule); color: var(--dim); font-size: .9rem; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Terms of Service</h1>
+  <p class="sub">Claude State Sync — a Visual Studio Code extension</p>
+</header>
+
+<p class="lead">
+  These terms cover your use of the Claude State Sync extension ("the extension"),
+  published by triplepai14 (Pawit Sangrassamee) ("the developer"). Installing or
+  using the extension means you accept them.
+</p>
+
+<h2>What the extension is</h2>
+<p>
+  A free, open-source developer tool that copies Claude Code's state — memory,
+  skills, plans, <code>CLAUDE.md</code> and session transcripts — between computers
+  you control, through <strong>your own</strong> Google Drive or Microsoft OneDrive
+  account. The developer operates no service, stores none of your data, and has no
+  access to your cloud storage.
+</p>
+
+<h2>Licence</h2>
+<p>
+  The extension is released under the MIT Licence. You may use, copy, modify and
+  redistribute it under that licence's terms; the licence text ships with the
+  extension and is published in its repository.
+</p>
+
+<h2>Your account and your data</h2>
+<ul>
+  <li>You need your own Google or Microsoft account, and your use of it remains subject to that provider's own terms.</li>
+  <li>Synced files count against your cloud storage quota, not anyone else's.</li>
+  <li>You are responsible for what you choose to sync. Session transcripts can contain source code, file paths and anything else you typed into Claude Code — review the toggles before enabling them on a shared or work account.</li>
+  <li>You may revoke the extension's access, delete its storage folder, or uninstall it at any time.</li>
+</ul>
+
+<h2>Acceptable use</h2>
+<p>You agree not to use the extension to:</p>
+<ul>
+  <li>Break the law, or the terms of Google, Microsoft, Anthropic or your employer.</li>
+  <li>Sync data you have no right to copy, or place confidential material in a personal cloud account against your organisation's rules.</li>
+  <li>Attack, overload or abuse the cloud providers' APIs, including through modified builds that use the extension's application credentials.</li>
+</ul>
+
+<h2>No warranty</h2>
+<div class="note">
+  <p>
+    The extension is provided <strong>"as is", without warranty of any kind</strong>,
+    express or implied, including but not limited to the warranties of
+    merchantability, fitness for a particular purpose and non-infringement.
+  </p>
+</div>
+<p>
+  It moves files between machines and rewrites paths inside transcripts to match the
+  machine they land on. It is careful — copies are verified before they replace
+  anything, and the original is never deleted by a copy — but no software is free of
+  defects. <strong>Keep your own backups of anything you cannot afford to lose.</strong>
+  The extension is a synchroniser, not a backup service.
+</p>
+
+<h2>Limitation of liability</h2>
+<p>
+  To the maximum extent permitted by law, the developer is not liable for any claim,
+  damages or other liability — including loss of data, loss of work, or interruption
+  of service — arising from the use of, or inability to use, the extension, whether
+  in contract, tort or otherwise.
+</p>
+
+<h2>Third-party services</h2>
+<p>
+  The extension talks directly to Google Drive or Microsoft OneDrive on your behalf.
+  Availability, quotas, pricing and outages of those services are outside the
+  developer's control. Access may also stop working if you revoke permission, if a
+  provider changes its policies, or if an application registration is suspended.
+</p>
+
+<h2>Availability and changes</h2>
+<p>
+  The extension is offered free of charge, with no service level of any kind. It may
+  be updated, changed or discontinued at any time. These terms may change too; the
+  current version always lives at this address, with the date shown below.
+</p>
+
+<h2>Contact</h2>
+<p>
+  Questions, bug reports and requests:
+  <a href="https://github.com/triplepai14/Claude-State-Sync-Releases/issues" rel="noopener">open an issue</a>
+  on the project's public repository.
+</p>
+
+<footer>
+  <p class="updated">Last updated: 25 August 2026 · <a href="./">Claude State Sync</a> · <a href="privacy.html">Privacy Policy</a></p>
+</footer>
+
+</body>
+</html>
