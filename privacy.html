@@ -123,15 +123,34 @@
     <td>This app's own folder in your OneDrive</td>
     <td><code>Files.ReadWrite.AppFolder</code>, <code>User.Read</code></td>
   </tr>
+  <tr>
+    <td>A git repository</td>
+    <td>A repository you name, reached with the git already on your computer</td>
+    <td>None — no account, no token held by the extension</td>
+  </tr>
 </table>
 <p>
-  Both permissions are the narrowest ones the providers offer for this purpose.
+  These are the narrowest permissions the providers offer for this purpose.
   <code>drive.file</code> grants access <em>only</em> to files this application itself
   creates — the extension cannot see, list or read any other file in your Google
   Drive. <code>Files.ReadWrite.AppFolder</code> confines the extension to a single
   application folder in OneDrive. <code>User.Read</code> is used solely to display
   which account you are signed in as, in the extension's own panel.
 </p>
+<div class="note">
+  <p>
+    <strong>One OneDrive exception, and only if you choose it.</strong> Microsoft has
+    moved some personal accounts to a storage backend where the app folder is refused
+    outright, leaving those accounts unable to sync at all. For them the extension
+    offers to keep the store in an ordinary <code>ClaudeStateSync</code> folder instead,
+    which requires <code>Files.ReadWrite</code> — a permission that can read and write
+    your whole OneDrive. It is never selected for you: the default is the app-folder
+    permission above, the swap is explained before it happens, needs a fresh sign-in,
+    and can be reversed in the extension's settings. Even then, nothing leaves your
+    account: the extension still only writes its own folder, and no server of ours is
+    involved.
+  </p>
+</div>
 
 <h2>What the developer collects</h2>
 <p><strong>Nothing.</strong> Specifically:</p>
