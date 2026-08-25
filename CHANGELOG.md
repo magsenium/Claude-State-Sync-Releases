@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.10.32
+
+- **Every issue from a run reaches the Issues tab**, not just the first one:
+  a failed sync used to record one error in Activity while the rest stayed in
+  the log (capped at five, with a `+n more` line pointing at the log).
+- **Conflicts are recorded too.** They reached the badge and the banner but
+  never the history; now each one reads `conflict — <file> was edited on two
+  machines, pick one`.
+- **A run that ends in errors still records its summary**, so the started
+  entry always has an outcome under it.
+
 ## 0.10.31
 
 - **The header log icon is gone.** Activity now carries what happened, and the
