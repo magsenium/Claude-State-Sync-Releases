@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.14.1
+
+- **The account row says which OAuth client the sign-in belongs to** —
+  `built-in client` or `own client`. Two machines on the same account but
+  different clients write to two separate stores and never see each other's
+  uploads, and until now nothing on screen told them apart: a real case took
+  reading secret storage on one machine and a screenshot of the other. Hover
+  the tag for what the difference costs.
 ## 0.14.0
 
 - **A way through for OneDrive accounts whose app folder Microsoft refuses.**

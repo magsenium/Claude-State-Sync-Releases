@@ -1,7 +1,7 @@
 # Claude State Sync — releases
 
 [![Marketplace](https://img.shields.io/badge/Marketplace-install-0098FF)](https://marketplace.visualstudio.com/items?itemName=triplepai14.claude-state-sync)
-![Version](https://img.shields.io/badge/version-0.14.0-blue)
+![Version](https://img.shields.io/badge/version-0.14.1-blue)
 ![VS Code](https://img.shields.io/badge/VS%20Code-1.85+-007ACC)
 ![Storage](https://img.shields.io/badge/storage-your%20Drive%2C%20OneDrive%20or%20git%20repo-4285F4)
 ![Scope](https://img.shields.io/badge/OAuth%20scope-app--scoped%20files%20only-34A853)
@@ -94,6 +94,10 @@ only matters if you want the built-in one back without deleting yours.
 > Nothing is deleted, and switching back brings the old store into view. To move
 > a store across, sync everything down first, switch, sync up again, then delete
 > the old folder in Drive by hand.
+>
+> The account row says which one a machine is on — **built-in client** or **own
+> client** — so two machines that share an account but cannot see each other's
+> uploads can be told apart at a glance.
 
 You are creating **two separate things**, and it helps to keep them apart:
 
