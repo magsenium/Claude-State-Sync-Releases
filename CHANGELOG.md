@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.15.0
+
+- **The sync now notices when something moves into `~/.claude` that is not
+  yours — before it uploads it.** Yesterday's `skills/synced` was one name;
+  this release stops needing to know names:
+  - **Marker, not name.** Any folder Claude Code fills from claude.ai carries an
+    empty `.bucket-<org>_<bucket>` file. Such folders are left alone in both
+    directions, whatever they are called, and swept out of the store if a
+    build that did not know better put them there.
+  - **Surge guard.** Fifty or more never-seen files appearing under one folder
+    of a shared scope in a single sync are held rather than uploaded, and the
+    panel asks: *sync them* or *never sync this folder*. A person writing
+    skills a file at a time never sees it; a tool unpacking two hundred files
+    does. Both answers are remembered per folder.
+  - **`claudeStateSync.ignore`.** The *never* answer lands here, and it can be
+    edited by hand — folders relative to `~/.claude`, kept out of the sync in
+    both directions. The store is not touched.
+
 ## 0.14.2
 
 - **Claude Code's own copy of your organisation's skills is no longer synced.**

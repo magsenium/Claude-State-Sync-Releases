@@ -1,7 +1,7 @@
 # Claude State Sync — releases
 
 [![Marketplace](https://img.shields.io/badge/Marketplace-install-0098FF)](https://marketplace.visualstudio.com/items?itemName=triplepai14.claude-state-sync)
-![Version](https://img.shields.io/badge/version-0.14.2-blue)
+![Version](https://img.shields.io/badge/version-0.15.0-blue)
 ![VS Code](https://img.shields.io/badge/VS%20Code-1.85+-007ACC)
 ![Storage](https://img.shields.io/badge/storage-your%20Drive%2C%20OneDrive%20or%20git%20repo-4285F4)
 ![Scope](https://img.shields.io/badge/OAuth%20scope-app--scoped%20files%20only-34A853)
@@ -46,9 +46,18 @@ sits at a different path on each machine. `settings.json` is off by default
 because most of it is machine-specific; when on, home paths are stored as
 `${HOME}` and expanded again on the way down.
 
-Never synced: `skills/synced/` (Claude Code's own copy of your organisation's
-skills — every machine fetches it itself), `cache/`, `backups/`, `ide/`, `shell-snapshots/`, `session-env/`,
-`telemetry/`, `plugins/`, `.credentials.json`, `.env`, and dotfiles.
+Never synced: `cache/`, `backups/`, `ide/`, `shell-snapshots/`, `session-env/`,
+`telemetry/`, `plugins/`, `.credentials.json`, `.env`, dotfiles — and any folder
+Claude Code fills from claude.ai itself (`skills/synced/` and the like, marked
+with a `.bucket-*` file). Every machine fetches those on its own.
+
+**A folder that fills up all at once is held, not uploaded.** If fifty or more
+files nobody has seen before appear under one folder of a shared scope in a
+single sync, the panel asks before sending them anywhere: *sync them* if they
+are yours, *never sync this folder* if a tool put them there. Both answers are
+remembered; the second one goes into `claudeStateSync.ignore`, which you can
+also edit by hand (paths relative to `~/.claude`, kept out in both directions).
+Skills written one file at a time never trip it.
 
 ---
 
