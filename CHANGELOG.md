@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.14.2
+
+- **Claude Code's own copy of your organisation's skills is no longer synced.**
+  Claude Code now downloads them into `~/.claude/skills/synced/` on every
+  machine — a couple of hundred schema, script and licence files for the
+  office skills — and the skills scope swept the lot into the store and onto
+  every other machine. That subtree is now left alone in both directions, and
+  copies an earlier build already pushed are removed from the store on the
+  next sync. Your own skills beside it are untouched.
+- **A scope switched off stays off for files arriving from the store too.**
+  The toggles governed what was uploaded, but a file that existed only in the
+  store was pulled regardless; now it follows the same switch.
+
 ## 0.14.1
 
 - **The account row says which OAuth client the sign-in belongs to** —

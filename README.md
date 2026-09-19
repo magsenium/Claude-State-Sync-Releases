@@ -1,7 +1,7 @@
 # Claude State Sync — releases
 
 [![Marketplace](https://img.shields.io/badge/Marketplace-install-0098FF)](https://marketplace.visualstudio.com/items?itemName=triplepai14.claude-state-sync)
-![Version](https://img.shields.io/badge/version-0.14.1-blue)
+![Version](https://img.shields.io/badge/version-0.14.2-blue)
 ![VS Code](https://img.shields.io/badge/VS%20Code-1.85+-007ACC)
 ![Storage](https://img.shields.io/badge/storage-your%20Drive%2C%20OneDrive%20or%20git%20repo-4285F4)
 ![Scope](https://img.shields.io/badge/OAuth%20scope-app--scoped%20files%20only-34A853)
@@ -46,7 +46,8 @@ sits at a different path on each machine. `settings.json` is off by default
 because most of it is machine-specific; when on, home paths are stored as
 `${HOME}` and expanded again on the way down.
 
-Never synced: `cache/`, `backups/`, `ide/`, `shell-snapshots/`, `session-env/`,
+Never synced: `skills/synced/` (Claude Code's own copy of your organisation's
+skills — every machine fetches it itself), `cache/`, `backups/`, `ide/`, `shell-snapshots/`, `session-env/`,
 `telemetry/`, `plugins/`, `.credentials.json`, `.env`, and dotfiles.
 
 ---
