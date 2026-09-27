@@ -1,7 +1,7 @@
 # Claude State Sync — releases
 
 [![Marketplace](https://img.shields.io/badge/Marketplace-install-0098FF)](https://marketplace.visualstudio.com/items?itemName=triplepai14.claude-state-sync)
-![Version](https://img.shields.io/badge/version-0.15.1-blue)
+![Version](https://img.shields.io/badge/version-0.15.2-blue)
 ![VS Code](https://img.shields.io/badge/VS%20Code-1.85+-007ACC)
 ![Storage](https://img.shields.io/badge/storage-your%20Drive%2C%20OneDrive%20or%20git%20repo-4285F4)
 ![Scope](https://img.shields.io/badge/OAuth%20scope-app--scoped%20files%20only-34A853)

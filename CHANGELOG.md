@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.15.2
+
+- **A push to a project with no folder on this machine no longer raises the
+  blue banner.** There was nothing to pull it into, and `pull it here` could
+  only fail. The project now appears in Other Projects straight away — even
+  before a full sync has listed it — marked `no folder here` with `browse…`.
+
 ## 0.15.1
 
 - **A project with no checkout on this machine no longer opens a folder picker
