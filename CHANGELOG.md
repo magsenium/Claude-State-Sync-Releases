@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.15.1
+
+- **A project with no checkout on this machine no longer opens a folder picker
+  when you sync.** Its row now says `no folder here` and carries a `browse…`
+  button; pressing that is the only thing that asks where the folder is. A
+  project whose checkout can be found by its git remote still starts syncing
+  with no question, and a folder cloned after the panel last looked is found
+  the next time you press it.
+
 ## 0.15.0
 
 - **The sync now notices when something moves into `~/.claude` that is not
